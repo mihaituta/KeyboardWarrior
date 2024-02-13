@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1ctpglsbiip"
-path="res://.godot/imported/HDoors.png-5265204a6900ee5be692adaeddfbb209.ctex"
+uid="uid://bvaxqdx31r02d"
+path="res://.godot/imported/VDoors.png-3734dcdad917a326a0a3081220da3c2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://World/HDoors.png"
-dest_files=["res://.godot/imported/HDoors.png-5265204a6900ee5be692adaeddfbb209.ctex"]
+source_file="res://World/Doors/VDoors.png"
+dest_files=["res://.godot/imported/VDoors.png-3734dcdad917a326a0a3081220da3c2c.ctex"]
 
 [params]
 

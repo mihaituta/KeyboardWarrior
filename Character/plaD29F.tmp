@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://bwbhrjwu8yolb"]
+[gd_scene load_steps=46 format=3 uid="uid://bwbhrjwu8yolb"]
 
 [ext_resource type="Script" path="res://Character/player.gd" id="1_daiap"]
 [ext_resource type="Texture2D" uid="uid://ce1u2tssjn13f" path="res://Character/ESC.png" id="2_i7ydv"]
@@ -216,7 +216,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_nljqq"]
 resource_name = "Attack2_R"
-length = 0.5
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -224,10 +224,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [37, 38, 39, 40, 41]
+"values": [37, 38, 39, 40, 41, 42]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -236,12 +236,9 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"remove_attack_number"
-}, {
 "args": [],
 "method": &"attack_animation_finished"
 }]
@@ -249,7 +246,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_40tn1"]
 resource_name = "Attack1"
-length = 0.5
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -257,10 +254,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [31, 32, 33, 34, 35]
+"values": [31, 32, 33, 34, 35, 36]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -269,12 +266,9 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"remove_attack_number"
-}, {
 "args": [],
 "method": &"attack_animation_finished"
 }]
@@ -282,7 +276,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_mny47"]
 resource_name = "Attack1Left"
-length = 0.5
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -290,10 +284,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [43, 44, 45, 46, 47]
+"values": [42, 43, 44, 45, 46, 48]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -302,12 +296,9 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"remove_attack_number"
-}, {
 "args": [],
 "method": &"attack_animation_finished"
 }]
@@ -315,7 +306,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_n568y"]
 resource_name = "Attack2_L"
-length = 0.5
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -323,10 +314,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [49, 50, 51, 52, 53]
+"values": [49, 50, 51, 52, 53, 54]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -335,12 +326,9 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"remove_attack_number"
-}, {
 "args": [],
 "method": &"attack_animation_finished"
 }]
@@ -390,18 +378,7 @@ blend_point_1/node = SubResource("AnimationNodeAnimation_u83je")
 blend_point_1/pos = 1.0
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_thsej"]
-animation = &"Attack1_L"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_28u6k"]
-animation = &"Attack1_R"
-
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_41d0f"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_thsej")
-blend_point_0/pos = -1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_28u6k")
-blend_point_1/pos = 1.0
-blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x34ep"]
 animation = &"DashLeft"
@@ -461,8 +438,6 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wo07m"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bpdi5"]
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mp2pi"]
 states/Attack1/node = SubResource("AnimationNodeBlendSpace1D_g4oqy")
 states/Attack1/position = Vector2(396, 250)
@@ -476,18 +451,14 @@ states/Idle/node = SubResource("AnimationNodeAnimation_0phi5")
 states/Idle/position = Vector2(396, 100)
 states/Run/node = SubResource("AnimationNodeBlendSpace2D_21j7l")
 states/Run/position = Vector2(586, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_bwj3y"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_xsgne"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_k7jhe"), "Idle", "Attack1", SubResource("AnimationNodeStateMachineTransition_1dn5x"), "Attack1", "Idle", SubResource("AnimationNodeStateMachineTransition_eb8wl"), "Idle", "Dash", SubResource("AnimationNodeStateMachineTransition_t2rv1"), "Dash", "Idle", SubResource("AnimationNodeStateMachineTransition_i11cf"), "Attack1", "Attack2", SubResource("AnimationNodeStateMachineTransition_wo07m"), "Attack2", "Attack3", SubResource("AnimationNodeStateMachineTransition_bpdi5")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_bwj3y"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_xsgne"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_k7jhe"), "Idle", "Attack1", SubResource("AnimationNodeStateMachineTransition_1dn5x"), "Attack1", "Idle", SubResource("AnimationNodeStateMachineTransition_eb8wl"), "Idle", "Dash", SubResource("AnimationNodeStateMachineTransition_t2rv1"), "Dash", "Idle", SubResource("AnimationNodeStateMachineTransition_i11cf"), "Attack1", "Attack2", SubResource("AnimationNodeStateMachineTransition_wo07m")]
 graph_offset = Vector2(-406, 16)
 
 [node name="Player" type="CharacterBody2D"]
-z_index = 1
+y_sort_enabled = true
 texture_filter = 1
 collision_mask = 2
 script = ExtResource("1_daiap")
-
-[node name="AttackTimer" type="Timer" parent="."]
-wait_time = 0.4
-one_shot = true
 
 [node name="ShadowSprite" type="Sprite2D" parent="."]
 position = Vector2(0.5, 0)
@@ -511,24 +482,22 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-active = false
 libraries = {
 "": SubResource("AnimationLibrary_bxsn7")
 }
 tree_root = SubResource("AnimationNodeStateMachine_mp2pi")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Attack1/blend_position = -0.64503
-parameters/Attack2/blend_position = -0.636917
-parameters/Attack3/blend_position = -0.998986
+parameters/Attack2/blend_position = -0.72211
+parameters/Attack3/blend_position = 0
 parameters/Dash/blend_position = -0.986815
 parameters/Run/blend_position = Vector2(0.00105822, 1.00023)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 enabled = false
 position_smoothing_enabled = true
 
 [node name="Smoothing2D" type="Node2D" parent="."]
+visible = false
 script = ExtResource("3_k610x")
-flags = 6
-
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

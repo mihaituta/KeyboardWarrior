@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0hibruxy1fy5"]
+
+[ext_resource type="Texture2D" uid="uid://bvaxqdx31r02d" path="res://World/Doors/VDoors.png" id="1_c62by"]
+[ext_resource type="Script" path="res://World/Doors/Door.gd" id="1_x3eyy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0gu3"]
+size = Vector2(32, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmmow"]
+size = Vector2(5, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yr3ll"]
+size = Vector2(5.01826, 22.0189)
+
+[node name="Door_Up" type="StaticBody2D"]
+collision_layer = 2
+script = ExtResource("1_x3eyy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -11)
+texture = ExtResource("1_c62by")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_b0gu3")
+disabled = true
+debug_color = Color(0, 0.6, 0.701961, 0.188235)
+
+[node name="LeftDoor" type="CollisionShape2D" parent="."]
+position = Vector2(-13.5, -6)
+shape = SubResource("RectangleShape2D_pmmow")
+
+[node name="RightDoor" type="CollisionShape2D" parent="."]
+position = Vector2(13.5, -6)
+shape = SubResource("RectangleShape2D_yr3ll")

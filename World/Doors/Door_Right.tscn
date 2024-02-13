@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6b7r01kyne4s"]
+
+[ext_resource type="Texture2D" uid="uid://doqsx4sv24fg2" path="res://World/Doors/DoorRight.png" id="1_1mquj"]
+[ext_resource type="Script" path="res://World/Doors/Door.gd" id="2_6geb2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_swan8"]
+size = Vector2(16, 40)
+
+[node name="Door_Right" type="StaticBody2D"]
+z_index = 2
+collision_layer = 2
+script = ExtResource("2_6geb2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1mquj")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_swan8")
+disabled = true

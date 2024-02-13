@@ -480,7 +480,7 @@ transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(-406, 16)
 
 [node name="Player" type="CharacterBody2D"]
-z_index = 1
+y_sort_enabled = true
 texture_filter = 1
 collision_mask = 2
 script = ExtResource("1_daiap")
@@ -524,11 +524,12 @@ parameters/Dash/blend_position = -0.986815
 parameters/Run/blend_position = Vector2(0.00105822, 1.00023)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 enabled = false
 position_smoothing_enabled = true
 
 [node name="Smoothing2D" type="Node2D" parent="."]
+visible = false
 script = ExtResource("3_k610x")
-flags = 6
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
