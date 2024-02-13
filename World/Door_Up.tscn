@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://d0hibruxy1fy5"]
+
+[ext_resource type="Texture2D" uid="uid://bvaxqdx31r02d" path="res://World/VDoors.png" id="1_c62by"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eydkn"]
+atlas = ExtResource("1_c62by")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_baslb"]
+atlas = ExtResource("1_c62by")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3nbmn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eydkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_baslb")
+}],
+"loop": true,
+"name": &"DoorUP",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0gu3"]
+size = Vector2(32, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmmow"]
+size = Vector2(5, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yr3ll"]
+size = Vector2(5.01826, 22.0189)
+
+[node name="Door_Up" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3nbmn")
+animation = &"DoorUP"
+
+[node name="Doors" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_b0gu3")
+disabled = true
+debug_color = Color(0, 0.6, 0.701961, 0.188235)
+
+[node name="LeftDoor" type="CollisionShape2D" parent="."]
+position = Vector2(-13.5, 5)
+shape = SubResource("RectangleShape2D_pmmow")
+
+[node name="RightDoor" type="CollisionShape2D" parent="."]
+position = Vector2(13.5, 5)
+shape = SubResource("RectangleShape2D_yr3ll")
