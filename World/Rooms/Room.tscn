@@ -1,0 +1,72 @@
+[gd_scene load_steps=7 format=3 uid="uid://ck1gmj4d4e72g"]
+
+[ext_resource type="PackedScene" uid="uid://cycvtcwqt8v34" path="res://World/TileMap.tscn" id="1_rp8al"]
+[ext_resource type="Script" path="res://World/Rooms/Room.gd" id="1_wg6g6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dxc2x"]
+size = Vector2(416, 192)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nejwn"]
+size = Vector2(24, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hv0n4"]
+size = Vector2(24, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2426i"]
+size = Vector2(32, 17)
+
+[node name="Room" type="Node2D"]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_wg6g6")
+
+[node name="TileMap" parent="." instance=ExtResource("1_rp8al")]
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+visible = false
+position = Vector2(232, 144)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2(8, 0)
+shape = SubResource("RectangleShape2D_dxc2x")
+
+[node name="DoorLeft" type="Area2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(16, 128)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorLeft"]
+position = Vector2(-4, 4)
+shape = SubResource("RectangleShape2D_nejwn")
+
+[node name="DoorRight" type="Area2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(464, 128)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorRight"]
+position = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_hv0n4")
+
+[node name="DoorUp" type="Area2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(240, 32)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorUp"]
+shape = SubResource("RectangleShape2D_2426i")
+
+[node name="DoorDown" type="Area2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(240, 256)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorDown"]
+shape = SubResource("RectangleShape2D_2426i")
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

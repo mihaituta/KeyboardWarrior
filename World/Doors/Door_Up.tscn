@@ -16,6 +16,8 @@ size = Vector2(5.01826, 22.0189)
 collision_layer = 2
 script = ExtResource("1_x3eyy")
 
+[node name="Marker2D" type="Marker2D" parent="."]
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -11)
 texture = ExtResource("2_d3206")
