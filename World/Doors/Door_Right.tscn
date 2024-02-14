@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6b7r01kyne4s"]
+[gd_scene load_steps=5 format=3 uid="uid://b6b7r01kyne4s"]
 
 [ext_resource type="Texture2D" uid="uid://doqsx4sv24fg2" path="res://World/Doors/DoorRight.png" id="1_1mquj"]
 [ext_resource type="Script" path="res://World/Doors/Door.gd" id="2_6geb2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_swan8"]
+size = Vector2(16, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ei1jj"]
 size = Vector2(16, 40)
 
 [node name="Door_Right" type="StaticBody2D"]
@@ -19,3 +22,11 @@ hframes = 2
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_swan8")
 disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(8, 4)
+shape = SubResource("RectangleShape2D_ei1jj")
+
+[node name="Marker2D" type="Marker2D" parent="Area2D"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://clksxmyorn5ct"]
+
+[ext_resource type="PackedScene" uid="uid://cycvtcwqt8v34" path="res://World/TileMap.tscn" id="1_eaikk"]
+[ext_resource type="Script" path="res://World/Rooms/Room.gd" id="1_tsdm3"]
+[ext_resource type="PackedScene" uid="uid://dwuhn4wbg5o51" path="res://World/Doors/Door_Down.tscn" id="3_ovfv4"]
+
+[node name="Room3" type="Node2D"]
+script = ExtResource("1_tsdm3")
+
+[node name="TileMap" parent="." instance=ExtResource("1_eaikk")]
+
+[node name="Door_Down" parent="." instance=ExtResource("3_ovfv4")]
+z_index = 1
+position = Vector2(247, 228)

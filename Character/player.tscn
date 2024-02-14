@@ -1,9 +1,17 @@
-[gd_scene load_steps=49 format=3 uid="uid://bwbhrjwu8yolb"]
+[gd_scene load_steps=50 format=3 uid="uid://bwbhrjwu8yolb"]
 
 [ext_resource type="Script" path="res://Character/player.gd" id="1_daiap"]
 [ext_resource type="Texture2D" uid="uid://ce1u2tssjn13f" path="res://Character/ESC.png" id="2_i7ydv"]
 [ext_resource type="Texture2D" uid="uid://buw1fjfii4jo1" path="res://Shadows/ShadowESC.png" id="2_k037b"]
-[ext_resource type="Script" path="res://addons/smoothing/smoothing_2d.gd" id="3_k610x"]
+
+[sub_resource type="Gradient" id="Gradient_ksgi7"]
+offsets = PackedFloat32Array(0, 0.68)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g8j6h"]
+gradient = SubResource("Gradient_ksgi7")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vx1dk"]
 radius = 3.0
@@ -489,6 +497,11 @@ script = ExtResource("1_daiap")
 wait_time = 0.4
 one_shot = true
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(2.375, 2.375)
+energy = 0.5
+texture = SubResource("GradientTexture2D_g8j6h")
+
 [node name="ShadowSprite" type="Sprite2D" parent="."]
 position = Vector2(0.5, 0)
 texture = ExtResource("2_k037b")
@@ -522,13 +535,5 @@ parameters/Attack2/blend_position = -0.636917
 parameters/Attack3/blend_position = -0.998986
 parameters/Dash/blend_position = -0.986815
 parameters/Run/blend_position = Vector2(0.00105822, 1.00023)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-enabled = false
-position_smoothing_enabled = true
-
-[node name="Smoothing2D" type="Node2D" parent="."]
-script = ExtResource("3_k610x")
-flags = 6
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
