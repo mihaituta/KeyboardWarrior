@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbewl33hgoqsf"]
+[gd_scene load_steps=6 format=3 uid="uid://bbewl33hgoqsf"]
 
 [ext_resource type="PackedScene" uid="uid://dl78i7xpkv2y0" path="res://World/Rooms/Room1.tscn" id="1_60anm"]
 [ext_resource type="PackedScene" uid="uid://bwbhrjwu8yolb" path="res://Character/player.tscn" id="2_6oqpl"]
-[ext_resource type="PackedScene" uid="uid://b6hpkw8jh62mb" path="res://Enemies/EnemyKey.tscn" id="2_n3d1q"]
 [ext_resource type="Script" path="res://World/Camera.gd" id="4_h7wmm"]
 [ext_resource type="PackedScene" uid="uid://clksxmyorn5ct" path="res://World/Rooms/Room3.tscn" id="5_7tiyi"]
 [ext_resource type="PackedScene" uid="uid://fwqwpj724k8l" path="res://World/Rooms/Room2.tscn" id="6_ltpdv"]
@@ -12,22 +11,21 @@ y_sort_enabled = true
 texture_filter = 1
 
 [node name="Player" parent="." instance=ExtResource("2_6oqpl")]
-visibility_layer = 2
-position = Vector2(191, 137)
-
-[node name="EnemyKey" parent="." instance=ExtResource("2_n3d1q")]
-z_index = 1
-position = Vector2(264, 112)
+position = Vector2(413, 102)
 
 [node name="Room1" parent="." instance=ExtResource("1_60anm")]
+z_index = 1
 
 [node name="Room2" parent="." instance=ExtResource("6_ltpdv")]
+z_index = 1
 position = Vector2(480, 0)
 
 [node name="Room3" parent="." instance=ExtResource("5_7tiyi")]
+z_index = 1
 position = Vector2(480, -272)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(244, 2)
 anchor_mode = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
