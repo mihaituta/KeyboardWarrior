@@ -1,12 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://b6hpkw8jh62mb"]
+[gd_scene load_steps=18 format=3 uid="uid://b6hpkw8jh62mb"]
 
 [ext_resource type="Script" path="res://Enemies/EnemyKey.gd" id="1_7x5bv"]
 [ext_resource type="Texture2D" uid="uid://dv3drmdtyqbw6" path="res://Enemies/Enemy.png" id="1_p86sk"]
-[ext_resource type="Script" path="res://Enemies/enemy_chase_state.gd" id="1_po71o"]
 [ext_resource type="Texture2D" uid="uid://cp8juhmads07a" path="res://Enemies/Sword.png" id="2_p3f72"]
 [ext_resource type="Texture2D" uid="uid://buw1fjfii4jo1" path="res://Shadows/ShadowESC.png" id="3_gncfl"]
 [ext_resource type="Texture2D" uid="uid://ooyg5dgqdoqn" path="res://Enemies/SwordEffect.png" id="4_tfkmv"]
-[ext_resource type="Script" path="res://World/FiniteStateMachine.gd" id="6_a06i1"]
+[ext_resource type="PackedScene" uid="uid://we6jgigp3nt3" path="res://Overlap/hurtbox.tscn" id="8_577kc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_160je"]
 atlas = ExtResource("1_p86sk")
@@ -184,15 +183,15 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mwdrt"]
-radius = 6.0
-height = 12.0
+radius = 11.0
+height = 22.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0eoec"]
-size = Vector2(548.5, 339.25)
+[sub_resource type="CircleShape2D" id="CircleShape2D_7r8j7"]
+radius = 13.0
 
 [node name="EnemyKey" type="CharacterBody2D"]
 z_index = 1
-collision_layer = 7
+collision_layer = 6
 collision_mask = 4
 script = ExtResource("1_7x5bv")
 
@@ -231,23 +230,20 @@ hframes = 4
 frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
+position = Vector2(1, 2)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_mwdrt")
+debug_color = Color(0, 0.6, 0.701961, 0.243137)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
-[node name="Area2D" type="Area2D" parent="."]
-visible = false
+[node name="Hurtbox" parent="." instance=ExtResource("8_577kc")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_0eoec")
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(1, 2)
+shape = SubResource("CircleShape2D_7r8j7")
+debug_color = Color(0.862745, 0.32549, 0.388235, 0.419608)
 
-[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("state")]
-script = ExtResource("6_a06i1")
-state = NodePath("EnemyChaseState")
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 
-[node name="EnemyChaseState" type="Node" parent="FiniteStateMachine" node_paths=PackedStringArray("actor", "animator")]
-script = ExtResource("1_po71o")
-actor = NodePath("../..")
-animator = NodePath("../../AnimatedSprite2D")
+[editable path="Hurtbox"]

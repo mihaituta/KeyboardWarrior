@@ -11,7 +11,7 @@ y_sort_enabled = true
 texture_filter = 1
 
 [node name="Player" parent="." instance=ExtResource("2_6oqpl")]
-position = Vector2(413, 102)
+position = Vector2(288, 124)
 
 [node name="Room1" parent="." instance=ExtResource("1_60anm")]
 z_index = 1
@@ -25,12 +25,13 @@ z_index = 1
 position = Vector2(480, -272)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(244, 2)
+position = Vector2(308, -5)
 anchor_mode = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 script = ExtResource("4_h7wmm")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
 energy = 0.3
 blend_mode = 1
