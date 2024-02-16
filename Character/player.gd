@@ -22,6 +22,8 @@ var is_attacking = false;
 @onready var animationTree = $AnimationTree;
 @onready var animationState = animationTree.get("parameters/playback");
 
+const DashEffect = preload("res://Effects/DashEffect.tscn")
+
 func _ready():
 	stats.no_health.connect(queue_free)
 	animationTree.active = true;
@@ -61,9 +63,16 @@ func move_state(delta):
 
 	if Input.is_action_just_pressed("attack"):
 		state = ATTACK;
+		
 	if Input.is_action_just_pressed("dash"):
+		create_dash_effect()
 		state = DASH;
 
+func create_dash_effect():
+	var effect = DashEffect.instantiate()
+	self.add_child(effect)
+	effect.scale.x = facing_direction_vector.x;
+	effect.global_position = self.global_position
 
 func dash_state():
 	velocity = facing_direction_vector * DASH_SPEED;
@@ -72,15 +81,12 @@ func dash_state():
 	
 func attack_state(delta):
 	if AttackNumber == 3:
-		#state = ATTACK;
 		AttackTimer.start()
 		animationState.travel("Attack1");
 	if Input.is_action_just_pressed("attack") and AttackNumber == 2:
-		#state = ATTACK;
 		AttackTimer.start()
 		animationState.travel("Attack2");
 	if Input.is_action_just_pressed("attack") and AttackNumber == 1:
-		#state = ATTACK;
 		AttackTimer.start()
 		animationState.travel("Attack3");
 	
@@ -91,12 +97,12 @@ func attack_state(delta):
 	set_move_input();
 	
 	if Input.is_action_just_pressed("dash"):
+		create_dash_effect()
 		state = DASH;
 	#if input_vector != Vector2.ZERO:
 	#velocity = velocity.move_toward(Vector2.ZERO * ATTACK_MOVE_DISTANCE, FRICTION/3 * delta);
 	#else:
 	
-
 func remove_attack_number():
 	AttackNumber -= 1
 
@@ -112,6 +118,7 @@ func _on_attack_timer_timeout():
 	state = MOVE;
 
 func _on_hurtbox_area_entered(area):
+	Global.camera.shake(0.2,1)
 	stats.health -= 1
 	hurtbox.start_invincibility(0.5)
 	hurtbox.create_hit_effect()

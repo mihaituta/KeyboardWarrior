@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://bs0pi6gdfqad4"]
+
+[ext_resource type="Texture2D" uid="uid://dgm1etx6v3ubo" path="res://Character/Dash1.png" id="1_x6fgy"]
+[ext_resource type="Script" path="res://Effects/Effect.gd" id="2_naemq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkspi"]
+atlas = ExtResource("1_x6fgy")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46dsr"]
+atlas = ExtResource("1_x6fgy")
+region = Rect2(64, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wa2p6"]
+atlas = ExtResource("1_x6fgy")
+region = Rect2(128, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2410"]
+atlas = ExtResource("1_x6fgy")
+region = Rect2(192, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qldfs"]
+atlas = ExtResource("1_x6fgy")
+region = Rect2(256, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwiuq"]
+atlas = ExtResource("1_x6fgy")
+region = Rect2(320, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87o83"]
+atlas = ExtResource("1_x6fgy")
+region = Rect2(384, 0, 64, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h840p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkspi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46dsr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wa2p6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2410")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qldfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwiuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87o83")
+}],
+"loop": false,
+"name": &"Animate",
+"speed": 10.0
+}]
+
+[node name="DashEffect" type="AnimatedSprite2D"]
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_h840p")
+animation = &"Animate"
+centered = false
+offset = Vector2(-60, -26)
+script = ExtResource("2_naemq")

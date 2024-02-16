@@ -28,7 +28,11 @@ position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 script = ExtResource("4_h7wmm")
 
+[node name="Timer" type="Timer" parent="Camera2D"]
+
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 visible = false
 energy = 0.3
 blend_mode = 1
+
+[connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]
