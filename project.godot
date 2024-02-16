@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Events="*res://World/event.gd"
+PlayerStats="*res://Character/PlayerStats.tscn"
 
 [display]
 
@@ -107,6 +108,9 @@ dash={
 2d_physics/layer_1="World"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
+2d_physics/layer_4="PlayerHurtbox"
+2d_physics/layer_5="EnemyHurtbox"
+2d_physics/layer_6="EnemyAttackRange"
 
 [rendering]
 

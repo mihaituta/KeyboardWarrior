@@ -6,7 +6,9 @@ extends CharacterBody2D
 @export var FRICTION = 700;
 @export var ATTACK_MOVE_DISTANCE = 10;
 @export var AttackNumber: int = 3;
+@onready var hurtbox = $Hurtbox
 
+var stats = PlayerStats
 enum {MOVE, DASH, ATTACK}
 
 var state = MOVE;
@@ -21,6 +23,7 @@ var is_attacking = false;
 @onready var animationState = animationTree.get("parameters/playback");
 
 func _ready():
+	stats.no_health.connect(queue_free)
 	animationTree.active = true;
 
 func _physics_process(delta):
@@ -107,3 +110,8 @@ func dash_animation_finished():
 func _on_attack_timer_timeout():
 	AttackNumber = 3;
 	state = MOVE;
+
+func _on_hurtbox_area_entered(area):
+	stats.health -= 1
+	hurtbox.start_invincibility(0.5)
+	hurtbox.create_hit_effect()
