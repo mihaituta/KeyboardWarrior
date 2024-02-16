@@ -16,6 +16,7 @@ size = Vector2(24, 40)
 size = Vector2(32, 17)
 
 [node name="Room" type="Node2D"]
+z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_wg6g6")
 

@@ -1,5 +1,5 @@
 extends Node2D
-#@onready var enemies = $Enemies
+@onready var enemies = $Enemies
 
 @onready var doors_container = $Doors
 @onready var enemies_container = $Enemies
@@ -10,7 +10,6 @@ func _ready() -> void:
 
 func _open_doors() -> void:
 	for door in doors_container.get_children():
-		print('sms')
 		door.open()
 		
 func _close_doors() -> void:	
@@ -25,5 +24,6 @@ func _on_player_detector_body_entered(body):
 	if (body.name == 'Player' && num_enemies > 0):
 		_close_doors()
 		Events.room_entered.emit(self)
-		#if enemies != null:
-			#for enemy in enemies.get_children(): 
+		if enemies != null:
+			for enemy in enemies.get_children(): 
+				enemy._start_chase()
