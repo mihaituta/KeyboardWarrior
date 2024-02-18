@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://daf1b6a3h6bjd"]
+[gd_scene load_steps=12 format=3 uid="uid://daf1b6a3h6bjd"]
 
 [ext_resource type="Texture2D" uid="uid://dtyabn32d6mrj" path="res://Character/Del.png" id="1_ud5so"]
 [ext_resource type="Texture2D" uid="uid://buw1fjfii4jo1" path="res://Shadows/ShadowESC.png" id="2_2cc2a"]
@@ -49,6 +49,15 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v1sh8"]
 radius = 15.0
 
+[sub_resource type="Gradient" id="Gradient_wdpnr"]
+offsets = PackedFloat32Array(0, 0.68)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6mngw"]
+gradient = SubResource("Gradient_wdpnr")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="StaticBody2D" type="StaticBody2D"]
 collision_layer = 2
 
@@ -63,3 +72,9 @@ shape = SubResource("CapsuleShape2D_v1sh8")
 [node name="ShadowEsc" type="Sprite2D" parent="."]
 position = Vector2(-0.5, 11)
 texture = ExtResource("2_2cc2a")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(2, 2)
+energy = 0.5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_6mngw")

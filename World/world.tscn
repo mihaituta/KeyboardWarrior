@@ -15,7 +15,10 @@ y_sort_enabled = true
 texture_filter = 1
 
 [node name="Player" parent="." instance=ExtResource("2_6oqpl")]
-position = Vector2(102, 140)
+position = Vector2(217, 158)
+
+[node name="CollisionShape2D" parent="Player" index="7"]
+visible = false
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("6_de03g")
@@ -30,11 +33,11 @@ position = Vector2(480, 0)
 [node name="Room3" parent="." instance=ExtResource("5_7tiyi")]
 position = Vector2(480, -272)
 
-[node name="Room4" parent="." instance=ExtResource("9_lnp5m")]
-position = Vector2(960, -544)
-
-[node name="Room5" parent="." instance=ExtResource("8_i5q5f")]
+[node name="Room4" parent="." instance=ExtResource("8_i5q5f")]
 position = Vector2(480, -544)
+
+[node name="Room5" parent="." instance=ExtResource("9_lnp5m")]
+position = Vector2(960, -544)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -63,3 +66,6 @@ grow_vertical = 1
 metadata/_edit_use_anchors_ = true
 
 [connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_timer_timeout"]
+
+[editable path="Player"]
+[editable path="Player/HitboxPivot/SwordHitbox"]
