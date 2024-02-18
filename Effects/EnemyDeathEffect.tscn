@@ -1,7 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://nteeaja7xyiy"]
+[gd_scene load_steps=13 format=3 uid="uid://nteeaja7xyiy"]
 
 [ext_resource type="Texture2D" uid="uid://dgcqabpc3jf1d" path="res://Effects/EnemyDeathEffect.png" id="1_0t5ia"]
+[ext_resource type="Texture2D" uid="uid://cg4qtm8uxhx3f" path="res://Effects/HitEffect.png" id="1_oj11k"]
 [ext_resource type="Script" path="res://Effects/Effect.gd" id="2_yodht"]
+[ext_resource type="AudioStream" uid="uid://b82ex12qo7mm8" path="res://Audio/Fight/Hit.wav" id="4_cdiln"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nu5vf"]
+atlas = ExtResource("1_oj11k")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxm25"]
+atlas = ExtResource("1_oj11k")
+region = Rect2(24, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mkidy"]
 atlas = ExtResource("1_0t5ia")
@@ -27,6 +37,12 @@ region = Rect2(128, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_nu5vf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxm25")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_mkidy")
 }, {
 "duration": 1.0,
@@ -49,6 +65,11 @@ animations = [{
 [node name="EnemyDeathEffect" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_r2syi")
 animation = &"Animate"
-frame = 4
+frame = 6
 frame_progress = 1.0
 script = ExtResource("2_yodht")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_cdiln")
+volume_db = -15.0
+autoplay = true

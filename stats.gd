@@ -17,5 +17,8 @@ var health = max_health:
 		if health <= 0:
 			emit_signal("no_health")
 
+func health_restart():
+	health = max_health
+
 func _ready():
 	self.health = max_health

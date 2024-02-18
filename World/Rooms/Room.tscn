@@ -23,6 +23,7 @@ script = ExtResource("1_wg6g6")
 [node name="TileMap" parent="." instance=ExtResource("1_rp8al")]
 
 [node name="PlayerDetector" type="Area2D" parent="."]
+visible = false
 position = Vector2(232, 144)
 collision_layer = 2
 metadata/_edit_group_ = true
@@ -70,6 +71,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_2426i")
 
 [node name="Doors" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Enemies" type="Node2D" parent="."]
 y_sort_enabled = true

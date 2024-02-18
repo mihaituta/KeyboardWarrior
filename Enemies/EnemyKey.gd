@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var animationPlayer = $AnimationPlayer;
 @onready var animationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback");
+@onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
 const EnemyDeathEffect = preload("res://Effects/EnemyDeathEffect.tscn")
 
@@ -45,7 +46,6 @@ func _physics_process(delta):
 			else:
 				state = IDLE
 		ATTACK:
-			#animationPlayer.play("AttackLeft")
 			animationState.travel("Attack") 
 			velocity =  Vector2.ZERO 
 			if !enemyAttackRange._playerInRange():
@@ -63,9 +63,6 @@ func accelerate_towards_point(point, delta):
 	animationTree.set("parameters/Run/blend_position", direction.x)
 	animationTree.set("parameters/Attack/blend_position", direction.x)
 	animationState.travel("Run")
-	#animationPlayer.flip_h = facingDirection
-	#if (facingDirection):
-		
 	
 func _on_hurtbox_area_entered(area):
 	Global.camera.shake(0.1,1)
@@ -73,6 +70,7 @@ func _on_hurtbox_area_entered(area):
 	var direction = (global_position - area.owner.global_position).normalized()
 	knockback = direction * KNOCKBACK_FORCE
 	hurtbox.create_hit_effect()
+	hurtbox.start_invincibility(0.4)
 
 func _start_chase():
 	state = CHASE
@@ -84,12 +82,15 @@ func _set_knockback_velocity(delta):
 	move_and_slide()
 	knockback = velocity
 	velocity = old_velocity
-	#knockback = knockback.move_toward(Vector2.ZERO, FRICTION * delta)
-	#velocity = knockback
-	#move_and_slide()
 	
 func _on_stats_no_health():
-	queue_free()
 	var enemyDeathEffect = EnemyDeathEffect.instantiate()
 	get_parent().add_child(enemyDeathEffect)
 	enemyDeathEffect.position = position
+	queue_free()
+
+func _on_hurtbox_invincibility_started():
+	blinkAnimationPlayer.play("Start")
+	
+func _on_hurtbox_invincibility_ended():
+	blinkAnimationPlayer.play("Stop")
