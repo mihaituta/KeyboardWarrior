@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://daf1b6a3h6bjd"]
+
+[ext_resource type="Texture2D" uid="uid://dtyabn32d6mrj" path="res://Character/Del.png" id="1_ud5so"]
+[ext_resource type="Texture2D" uid="uid://buw1fjfii4jo1" path="res://Shadows/ShadowESC.png" id="2_2cc2a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_io6bv"]
+atlas = ExtResource("1_ud5so")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dcc5f"]
+atlas = ExtResource("1_ud5so")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k56ul"]
+atlas = ExtResource("1_ud5so")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6djhe"]
+atlas = ExtResource("1_ud5so")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cm50"]
+atlas = ExtResource("1_ud5so")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_abp22"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_io6bv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dcc5f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k56ul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6djhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cm50")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v1sh8"]
+radius = 15.0
+
+[node name="StaticBody2D" type="StaticBody2D"]
+collision_layer = 2
+
+[node name="Del" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_abp22")
+autoplay = "default"
+frame_progress = 0.215664
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_v1sh8")
+
+[node name="ShadowEsc" type="Sprite2D" parent="."]
+position = Vector2(-0.5, 11)
+texture = ExtResource("2_2cc2a")

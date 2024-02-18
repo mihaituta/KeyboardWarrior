@@ -1,10 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://psstr1pnp6jd"]
+[gd_scene load_steps=7 format=3 uid="uid://psstr1pnp6jd"]
 
 [ext_resource type="AudioStream" uid="uid://djpoh78p7x8fm" path="res://Audio/Fight/Hurt.wav" id="1_5nxic"]
-[ext_resource type="Script" path="res://Character/PlayerHurtSound.gd" id="2_mfggq"]
+[ext_resource type="Texture2D" uid="uid://cg4qtm8uxhx3f" path="res://Effects/HitEffect.png" id="1_vrhf4"]
+[ext_resource type="Script" path="res://Effects/Effect.gd" id="2_t222b"]
 
-[node name="PlayerHurtSound" type="AudioStreamPlayer"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_eoe75"]
+atlas = ExtResource("1_vrhf4")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dq1t"]
+atlas = ExtResource("1_vrhf4")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f6jus"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eoe75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dq1t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="PlayerHurtSound" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_f6jus")
+script = ExtResource("2_t222b")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_5nxic")
 volume_db = -15.0
 autoplay = true
-script = ExtResource("2_mfggq")

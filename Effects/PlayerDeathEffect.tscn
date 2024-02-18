@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://jtnr6teys2q0"]
+
+[ext_resource type="Texture2D" uid="uid://ce1u2tssjn13f" path="res://Character/ESC.png" id="1_831fl"]
+[ext_resource type="Script" path="res://Effects/PlayerDeathEffect.gd" id="2_rci28"]
+[ext_resource type="AudioStream" uid="uid://cv5wfyisymie1" path="res://Audio/Music/mixkit-game-over-trombone-1940.wav" id="3_yup7n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_152r0"]
+atlas = ExtResource("1_831fl")
+region = Rect2(1500, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3s3c"]
+atlas = ExtResource("1_831fl")
+region = Rect2(1560, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfrvo"]
+atlas = ExtResource("1_831fl")
+region = Rect2(1620, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vaaib"]
+atlas = ExtResource("1_831fl")
+region = Rect2(1680, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4h5r"]
+atlas = ExtResource("1_831fl")
+region = Rect2(1740, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1443v"]
+atlas = ExtResource("1_831fl")
+region = Rect2(1800, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jnpj3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_152r0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3s3c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfrvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vaaib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4h5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1443v")
+}],
+"loop": false,
+"name": &"Animate",
+"speed": 8.0
+}]
+
+[node name="PlayerDeathEffect" type="AnimatedSprite2D"]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_jnpj3")
+animation = &"Animate"
+frame = 5
+frame_progress = 1.0
+offset = Vector2(0, -10)
+script = ExtResource("2_rci28")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_yup7n")
+volume_db = -25.0
+pitch_scale = 1.2
+autoplay = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

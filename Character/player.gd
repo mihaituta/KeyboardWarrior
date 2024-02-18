@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var DASH_LENGTH = 0.2;
 @export var DASH_COOLDOWN = 1;
 @export var MAX_DASH_COUNTER = 2;
+@export var RESPAWN_COOLDOWN = 3;
 var CURRENT_DASH_COUNTER
 
 var stats = PlayerStats
@@ -23,6 +24,8 @@ var input_vector = Vector2.ZERO;
 @onready var DashDurationTimer = $DashDurationTimer
 @onready var DashAgainTimer = $DashAgainTimer
 @onready var DashCooldownTimer = $DashCooldownTimer
+@onready var playerDeathRespawnTimer = $PlayerDeathRespawnTimer
+
 @onready var hurtbox = $Hurtbox
 @onready var sprite2D = $Sprite2D;
 @onready var animationPlayer = $AnimationPlayer;
@@ -30,9 +33,9 @@ var input_vector = Vector2.ZERO;
 @onready var animationState = animationTree.get("parameters/playback");
 @onready var blinkAnimationPlayer = $BlinkAnimationPlayer
 
-
 const DashEffect = preload("res://Effects/DashEffect.tscn")
 const PlayerHurtSound = preload("res://Character/PlayerHurtSound.tscn")
+const PlayerDeathEffect = preload("res://Effects/PlayerDeathEffect.tscn")
 
 func _ready():
 	stats.no_health.connect(_player_death)
@@ -40,10 +43,11 @@ func _ready():
 	CURRENT_DASH_COUNTER = MAX_DASH_COUNTER
 	
 func _player_death():
+	#get_tree().change_scene_to_file("res://World/world.tscn")
 	queue_free()
-	get_tree().reload_current_scene()
-	stats.health_restart()
-
+	var playerDeathEffect = PlayerDeathEffect.instantiate()
+	get_parent().add_child(playerDeathEffect)
+	playerDeathEffect.global_position = global_position
 	
 func _physics_process(delta):
 	match state:
@@ -62,8 +66,7 @@ func set_move_input():
 	
 func move_state(delta):
 	set_move_input()
-	
-	#get_tree().change_scene_to_file("res://World/world.tscn")
+
 	if input_vector != Vector2.ZERO:
 		animationTree.set("parameters/Run/blend_position", input_vector);
 		animationTree.set("parameters/Attack1/blend_position", input_vector.x);
@@ -82,45 +85,24 @@ func move_state(delta):
 		state = ATTACK;
 		
 	if Input.is_action_just_pressed("dash") and !_is_dashing() and CURRENT_DASH_COUNTER != 0:
-		#create_dash_effect()
-		if(CURRENT_DASH_COUNTER == 2):
-			start_dash_cooldown(DASH_COOLDOWN)
-			start_dash_timer(DASH_LENGTH)
-			animationState.travel("Dash");
-			create_dash_effect()
-		if(Input.is_action_just_pressed("dash") and CURRENT_DASH_COUNTER == 1):
-			start_dash_cooldown(DASH_COOLDOWN)
-			start_dash_timer(DASH_LENGTH)
-			animationState.travel("Dash");
-			create_dash_effect()
-		state = DASH;
+		start_dash()
 
-func start_dash_timer(duration):
-	DashDurationTimer.wait_time = duration
-	DashDurationTimer.start()
+func start_timer(timer, duration):
+	timer.wait_time = duration
+	timer.start()
 
-func dash():
-	if Input.is_action_just_pressed("dash") and !_is_dashing() and CURRENT_DASH_COUNTER != 0:
-		#create_dash_effect()
-		if(CURRENT_DASH_COUNTER == 2):
-			start_dash_cooldown(DASH_COOLDOWN)
-			start_dash_timer(DASH_LENGTH)
-			animationState.travel("Dash");
-			create_dash_effect()
-		if(Input.is_action_just_pressed("dash") and CURRENT_DASH_COUNTER == 1):
-			start_dash_cooldown(DASH_COOLDOWN)
-			start_dash_timer(DASH_LENGTH)
-			animationState.travel("Dash");
-			create_dash_effect()
-		state = DASH;
-
-func start_dash_again_timer(duration):
-	DashAgainTimer.wait_time = duration
-	DashAgainTimer.start()
-
-func start_dash_cooldown(duration):
-	DashCooldownTimer.wait_time = duration
-	DashCooldownTimer.start()
+func start_dash():
+	if(CURRENT_DASH_COUNTER == 2):
+		start_timer(DashCooldownTimer, DASH_COOLDOWN)
+		start_timer(DashDurationTimer, DASH_LENGTH)
+		animationState.travel("Dash");
+		create_dash_effect()
+	if(Input.is_action_just_pressed("dash") and CURRENT_DASH_COUNTER == 1):
+		start_timer(DashCooldownTimer, DASH_COOLDOWN)
+		start_timer(DashDurationTimer, DASH_LENGTH)
+		animationState.travel("Dash");
+		create_dash_effect()
+	state = DASH;
 	
 func _is_dashing():
 	return !DashDurationTimer.is_stopped()
@@ -146,11 +128,11 @@ func attack_state(_delta):
 		AttackTimer.start()
 		animationState.travel("Attack3");
 	velocity = facing_direction_vector * ATTACK_MOVE_DISTANCE;
-
 	move_and_slide();
 	set_move_input();
-	dash()
-	
+	if Input.is_action_just_pressed("dash") and !_is_dashing() and CURRENT_DASH_COUNTER != 0:
+		start_dash()
+
 func remove_attack_number():
 	ATTACK_NUMBER -= 1
 

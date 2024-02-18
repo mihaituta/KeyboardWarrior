@@ -18,13 +18,7 @@ position = Vector2(240, 43)
 position = Vector2(24, 128)
 
 [node name="EnemyKey" parent="Enemies" index="0" instance=ExtResource("4_v3kug")]
-position = Vector2(171, 197)
+position = Vector2(207, 182)
 
 [node name="EnemyKey2" parent="Enemies" index="1" instance=ExtResource("4_v3kug")]
-position = Vector2(171, 98)
-
-[node name="EnemyKey3" parent="Enemies" index="2" instance=ExtResource("4_v3kug")]
-position = Vector2(376, 209)
-
-[node name="EnemyKey4" parent="Enemies" index="3" instance=ExtResource("4_v3kug")]
-position = Vector2(374, 73)
+position = Vector2(167, 90)

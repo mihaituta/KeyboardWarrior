@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dl78i7xpkv2y0"]
+[gd_scene load_steps=6 format=3 uid="uid://dl78i7xpkv2y0"]
 
+[ext_resource type="Texture2D" uid="uid://csku0ubljdt4i" path="res://World/KnightFigurine1.png" id="3_m8bjb"]
+[ext_resource type="FontFile" uid="uid://dx1wf14m2wiys" path="res://UI/Font/m3x6.ttf" id="4_50ian"]
 [ext_resource type="PackedScene" uid="uid://b6b7r01kyne4s" path="res://World/Doors/Door_Right.tscn" id="4_jujav"]
 [ext_resource type="PackedScene" uid="uid://ck1gmj4d4e72g" path="res://World/Rooms/Room.tscn" id="4_ot65f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ap6l"]
+radius = 7.0
+height = 36.0
 
 [node name="Room1" instance=ExtResource("4_ot65f")]
 
@@ -11,3 +17,35 @@ layer_1/tile_data = PackedInt32Array(0, 1310721, 8, 65536, 1310721, 8, 131072, 1
 
 [node name="Door_Right" parent="Doors" index="0" instance=ExtResource("4_jujav")]
 position = Vector2(456, 128)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="8"]
+position = Vector2(175, 132)
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="KnightFigurine1" type="Sprite2D" parent="StaticBody2D" index="0"]
+texture = ExtResource("3_m8bjb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="1"]
+visible = false
+position = Vector2(0, 2)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_8ap6l")
+
+[node name="Control" type="Control" parent="." index="9"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control" index="0"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 57.0
+offset_right = 215.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(0.960784, 0.960784, 0.960784, 0.356863)
+theme_override_fonts/font = ExtResource("4_50ian")
+theme_override_font_sizes/font_size = 16
+text = "Now, our little hero, armed with a sword that he took from a D&D figurine, is set on getting his princess back."
+autowrap_mode = 2

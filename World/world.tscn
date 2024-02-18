@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbewl33hgoqsf"]
+[gd_scene load_steps=10 format=3 uid="uid://bbewl33hgoqsf"]
 
 [ext_resource type="PackedScene" uid="uid://dl78i7xpkv2y0" path="res://World/Rooms/Room1.tscn" id="1_60anm"]
 [ext_resource type="PackedScene" uid="uid://bwbhrjwu8yolb" path="res://Character/player.tscn" id="2_6oqpl"]
@@ -7,13 +7,20 @@
 [ext_resource type="AudioStream" uid="uid://c2pj7p2vjijk5" path="res://Audio/Music/Do or Die.wav" id="6_de03g"]
 [ext_resource type="PackedScene" uid="uid://fwqwpj724k8l" path="res://World/Rooms/Room2.tscn" id="6_ltpdv"]
 [ext_resource type="PackedScene" uid="uid://cpebsxlvhg25f" path="res://UI/HealthUI.tscn" id="7_51obn"]
+[ext_resource type="PackedScene" uid="uid://daegrckielg7n" path="res://World/Rooms/Room4.tscn" id="8_i5q5f"]
+[ext_resource type="PackedScene" uid="uid://brlb0kcoge053" path="res://World/Rooms/Room5.tscn" id="9_lnp5m"]
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 texture_filter = 1
 
 [node name="Player" parent="." instance=ExtResource("2_6oqpl")]
-position = Vector2(402, 138)
+position = Vector2(102, 140)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("6_de03g")
+volume_db = -20.0
+autoplay = true
 
 [node name="Room1" parent="." instance=ExtResource("1_60anm")]
 
@@ -22,6 +29,12 @@ position = Vector2(480, 0)
 
 [node name="Room3" parent="." instance=ExtResource("5_7tiyi")]
 position = Vector2(480, -272)
+
+[node name="Room4" parent="." instance=ExtResource("9_lnp5m")]
+position = Vector2(960, -544)
+
+[node name="Room5" parent="." instance=ExtResource("8_i5q5f")]
+position = Vector2(480, -544)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -34,11 +47,6 @@ script = ExtResource("4_h7wmm")
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.3
 blend_mode = 1
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_de03g")
-volume_db = -10.0
-autoplay = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

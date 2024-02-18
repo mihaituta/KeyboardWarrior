@@ -1,0 +1,327 @@
+[gd_scene load_steps=18 format=3 uid="uid://kcq81lx3bvbj"]
+
+[ext_resource type="Texture2D" uid="uid://dhsm820nrtt1o" path="res://IntroScene/1.jpg" id="1_6djjl"]
+[ext_resource type="Script" path="res://IntroScene/IntroScene.gd" id="1_24d8h"]
+[ext_resource type="AudioStream" uid="uid://c6k0dersu5xdj" path="res://Audio/IntroScene/page-flip2-178323.mp3" id="1_j4kxw"]
+[ext_resource type="Texture2D" uid="uid://mlriti8xg3bm" path="res://IntroScene/2.jpg" id="2_j4k7b"]
+[ext_resource type="Texture2D" uid="uid://cwdnapyg7vj7c" path="res://IntroScene/3.jpg" id="3_j47hw"]
+[ext_resource type="FontFile" uid="uid://dx1wf14m2wiys" path="res://UI/Font/m3x6.ttf" id="3_wsmh7"]
+[ext_resource type="Texture2D" uid="uid://d0ovsbphhqrtd" path="res://IntroScene/4.jpg" id="4_fwt6h"]
+[ext_resource type="AudioStream" uid="uid://sqpxutix7sje" path="res://Audio/Pixel 3.wav" id="7_1rste"]
+[ext_resource type="FontFile" uid="uid://dxdscp4kqbwb3" path="res://UI/Font/DungeonFont.ttf" id="7_4qhvc"]
+
+[sub_resource type="Animation" id="Animation_n8hja"]
+resource_name = "Page1"
+length = 25.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(0.26, 1),
+"update": 0,
+"values": [Vector2(-100, 68), Vector2(125, 68)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.4,
+"stream": ExtResource("1_j4kxw")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.4,
+"stream": ExtResource("1_j4kxw")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.4,
+"stream": ExtResource("1_j4kxw")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.4,
+"stream": ExtResource("1_j4kxw")
+}],
+"times": PackedFloat32Array(0, 5, 10, 15)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5, 8),
+"transitions": PackedFloat32Array(0.26, 1),
+"update": 0,
+"values": [Vector2(600, 68), Vector2(320, 68)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(10, 13),
+"transitions": PackedFloat32Array(0.26, 1),
+"update": 0,
+"values": [Vector2(-100, 202), Vector2(167.361, 202)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("4:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(15, 18),
+"transitions": PackedFloat32Array(0.26, 1),
+"update": 0,
+"values": [Vector2(600, 202), Vector2(361.368, 202)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 19),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(19),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_can_skip"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2sdm7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(125, 68)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(327, 68)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(167.361, 202)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("4:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(361.368, 202)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_573sb"]
+_data = {
+"Page1": SubResource("Animation_n8hja"),
+"RESET": SubResource("Animation_2sdm7")
+}
+
+[sub_resource type="FontVariation" id="FontVariation_trg4x"]
+base_font = ExtResource("7_4qhvc")
+
+[sub_resource type="FontVariation" id="FontVariation_mfjxx"]
+base_font = ExtResource("7_4qhvc")
+
+[sub_resource type="FontVariation" id="FontVariation_ksqif"]
+base_font = ExtResource("7_4qhvc")
+
+[sub_resource type="FontVariation" id="FontVariation_187hy"]
+base_font = ExtResource("7_4qhvc")
+
+[sub_resource type="FontVariation" id="FontVariation_aun6y"]
+base_font = ExtResource("7_4qhvc")
+
+[node name="IntroScene" type="Node2D"]
+script = ExtResource("1_24d8h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_573sb")
+}
+autoplay = "Page1"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -6.0
+offset_right = 506.0
+offset_bottom = 283.0
+color = Color(0.313726, 0.364706, 0.603922, 0.537255)
+
+[node name="1" type="Sprite2D" parent="."]
+modulate = Color(0.745098, 0.760784, 0.921569, 1)
+position = Vector2(125, 68)
+scale = Vector2(0.0592033, 0.0592033)
+texture = ExtResource("1_6djjl")
+
+[node name="Label" type="Label" parent="1"]
+offset_left = -86.5786
+offset_top = 608.813
+offset_right = 1405.42
+offset_bottom = 1105.81
+theme_override_colors/font_color = Color(0.258824, 0.258824, 0.258824, 1)
+theme_override_fonts/font = SubResource("FontVariation_trg4x")
+theme_override_font_sizes/font_size = 96
+text = "Once upon a desk, there was a keyboard, and on that keyboard, love was dancing between two small keys... Esc and Del
+"
+autowrap_mode = 2
+
+[node name="2" type="Sprite2D" parent="."]
+modulate = Color(0.745098, 0.760784, 0.921569, 1)
+position = Vector2(327, 68)
+scale = Vector2(0.0501588, 0.0501588)
+texture = ExtResource("2_j4k7b")
+
+[node name="Label" type="Label" parent="2"]
+offset_left = 78.6209
+offset_top = 795.542
+offset_right = 1584.62
+offset_bottom = 1088.54
+theme_override_colors/font_color = Color(0.258824, 0.258824, 0.258824, 1)
+theme_override_fonts/font = SubResource("FontVariation_mfjxx")
+theme_override_font_sizes/font_size = 106
+text = "They often met with one another to be together and be happy... But many were not happy."
+autowrap_mode = 2
+
+[node name="3" type="Sprite2D" parent="."]
+modulate = Color(0.745098, 0.760784, 0.921569, 1)
+position = Vector2(167.361, 202)
+scale = Vector2(0.0556194, 0.0584475)
+texture = ExtResource("3_j47hw")
+
+[node name="Label" type="Label" parent="3"]
+offset_left = -797.591
+offset_top = -598.828
+offset_right = 734.409
+offset_bottom = -294.828
+theme_override_colors/font_color = Color(0.258824, 0.258824, 0.258824, 1)
+theme_override_fonts/font = SubResource("FontVariation_mfjxx")
+theme_override_font_sizes/font_size = 96
+text = "The other keys had had enough with their midnight meetings and wanted them to go back to their places.
+"
+autowrap_mode = 2
+
+[node name="4" type="Sprite2D" parent="."]
+modulate = Color(0.745098, 0.760784, 0.921569, 1)
+position = Vector2(361.368, 202)
+scale = Vector2(0.0518429, 0.0518429)
+texture = ExtResource("4_fwt6h")
+
+[node name="Label" type="Label" parent="4"]
+offset_left = -1511.65
+offset_top = -1080.19
+offset_right = 301.352
+offset_bottom = -193.188
+theme_override_colors/font_color = Color(0.258824, 0.258824, 0.258824, 1)
+theme_override_fonts/font = SubResource("FontVariation_ksqif")
+theme_override_font_sizes/font_size = 96
+text = "Chaos ensued as the other keys started to run to the two of them to break them up. But the chaos was so big, the rumbling of the keys made the keyboard shake. "
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="4"]
+offset_left = -702.0
+offset_top = -502.0
+offset_right = 282.0
+offset_bottom = -116.0
+theme_override_colors/font_color = Color(0.258824, 0.258824, 0.258824, 1)
+theme_override_fonts/font = SubResource("FontVariation_187hy")
+theme_override_font_sizes/font_size = 96
+text = "And it shook so much that the whole keyboard with it's keys fell of the desk...
+"
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="4"]
+offset_left = 436.547
+offset_top = -1060.9
+offset_right = 1034.55
+offset_bottom = -38.8984
+theme_override_colors/font_color = Color(0.258824, 0.258824, 0.258824, 1)
+theme_override_fonts/font = SubResource("FontVariation_aun6y")
+theme_override_font_sizes/font_size = 96
+text = "...all of them being scattered all over the floor... all over a D&D board."
+autowrap_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_1rste")
+volume_db = -25.0
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 374.0
+offset_top = 250.0
+offset_right = 473.0
+offset_bottom = 273.0
+theme_override_fonts/font = ExtResource("3_wsmh7")
+text = "Press enter to continue...
+"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bwbhrjwu8yolb"]
+[gd_scene load_steps=63 format=3 uid="uid://bwbhrjwu8yolb"]
 
 [ext_resource type="Script" path="res://Character/player.gd" id="1_daiap"]
 [ext_resource type="Texture2D" uid="uid://ce1u2tssjn13f" path="res://Character/ESC.png" id="2_i7ydv"]
@@ -585,6 +585,22 @@ tracks/0/keys = {
 "values": [11, 12, 13, 14]
 }
 
+[sub_resource type="Animation" id="Animation_8p2r2"]
+resource_name = "Death"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [25, 26, 27, 28, 29, 30]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bxsn7"]
 _data = {
 "Attack1_L": SubResource("Animation_mny47"),
@@ -593,6 +609,7 @@ _data = {
 "Attack2_R": SubResource("Animation_nljqq"),
 "DashLeft": SubResource("Animation_36ggy"),
 "DashRight": SubResource("Animation_e3uqy"),
+"Death": SubResource("Animation_8p2r2"),
 "Hit": SubResource("Animation_x0jev"),
 "Idle": SubResource("Animation_bb2ey"),
 "RESET": SubResource("Animation_0te7p"),
@@ -725,6 +742,21 @@ height = 40.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hib21"]
 height = 26.0
 
+[sub_resource type="Animation" id="Animation_yvlqh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_qb5eg"]
 resource_name = "Start"
 length = 0.2
@@ -745,21 +777,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_m8jyl"]
 resource_name = "Stop"
 length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/active")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_yvlqh"]
-length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -864,7 +881,7 @@ position = Vector2(1, -10)
 shape = SubResource("CapsuleShape2D_hib21")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -5.5
+volume_db = -10.0
 
 [node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
