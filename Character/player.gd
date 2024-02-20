@@ -52,20 +52,20 @@ func _player_death():
 func _physics_process(delta):
 	match state:
 		MOVE: 
-			move_state(delta)
+			_move_state(delta)
 		DASH: 
-			dash_state()
+			_dash_state()
 		ATTACK:
-			attack_state(delta)
+			_attack_state(delta)
 	
-func set_move_input():
+func _set_move_input():
 	input_vector.x = Input.get_axis("ui_left", "ui_right");
 	input_vector.y = Input.get_axis("ui_up", "ui_down");
 	input_vector = input_vector.normalized();
 	facing_direction_vector = input_vector;
 	
-func move_state(delta):
-	set_move_input()
+func _move_state(delta):
+	_set_move_input()
 
 	if input_vector != Vector2.ZERO:
 		animationTree.set("parameters/Run/blend_position", input_vector);
@@ -85,39 +85,39 @@ func move_state(delta):
 		state = ATTACK;
 		
 	if Input.is_action_just_pressed("dash") and !_is_dashing() and CURRENT_DASH_COUNTER != 0:
-		start_dash()
+		_start_dash()
 
-func start_timer(timer, duration):
+func _start_timer(timer, duration):
 	timer.wait_time = duration
 	timer.start()
 
-func start_dash():
+func _start_dash():
 	if(CURRENT_DASH_COUNTER == 2):
-		start_timer(DashCooldownTimer, DASH_COOLDOWN)
-		start_timer(DashDurationTimer, DASH_LENGTH)
+		_start_timer(DashCooldownTimer, DASH_COOLDOWN)
+		_start_timer(DashDurationTimer, DASH_LENGTH)
 		animationState.travel("Dash");
-		create_dash_effect()
+		_create_dash_effect()
 	if(Input.is_action_just_pressed("dash") and CURRENT_DASH_COUNTER == 1):
-		start_timer(DashCooldownTimer, DASH_COOLDOWN)
-		start_timer(DashDurationTimer, DASH_LENGTH)
+		_start_timer(DashCooldownTimer, DASH_COOLDOWN)
+		_start_timer(DashDurationTimer, DASH_LENGTH)
 		animationState.travel("Dash");
-		create_dash_effect()
+		_create_dash_effect()
 	state = DASH;
 	
 func _is_dashing():
 	return !DashDurationTimer.is_stopped()
 
-func create_dash_effect():
+func _create_dash_effect():
 	var effect = DashEffect.instantiate()
 	self.add_child(effect)
 	effect.scale.x = facing_direction_vector.x;
 	effect.global_position = self.global_position
 
-func dash_state():
+func _dash_state():
 	velocity = facing_direction_vector * DASH_SPEED;
 	move_and_slide();
 	
-func attack_state(_delta):
+func _attack_state(_delta):
 	if ATTACK_NUMBER == 3:
 		AttackTimer.start()
 		animationState.travel("Attack1");
@@ -129,17 +129,17 @@ func attack_state(_delta):
 		animationState.travel("Attack3");
 	velocity = facing_direction_vector * ATTACK_MOVE_DISTANCE;
 	move_and_slide();
-	set_move_input();
+	_set_move_input();
 	if Input.is_action_just_pressed("dash") and !_is_dashing() and CURRENT_DASH_COUNTER != 0:
-		start_dash()
+		_start_dash()
 
-func remove_attack_number():
+func _remove_attack_number():
 	ATTACK_NUMBER -= 1
 
-func attack_animation_finished():
+func _attack_animation_finished():
 	state = MOVE;
 	
-func dash_animation_finished():
+func _dash_animation_finished():
 	velocity = facing_direction_vector * MAX_SPEED;
 	state = MOVE;
 

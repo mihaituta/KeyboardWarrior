@@ -718,7 +718,6 @@ visible = false
 position = Vector2(-15, 3)
 texture = ExtResource("5_aobdr")
 hframes = 4
-frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sword")
@@ -781,10 +780,6 @@ volume_db = -5.5
 libraries = {
 "": SubResource("AnimationLibrary_8vhor")
 }
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]

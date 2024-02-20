@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://bwbhrjwu8yolb"]
+[gd_scene load_steps=62 format=3 uid="uid://bwbhrjwu8yolb"]
 
 [ext_resource type="Script" path="res://Character/player.gd" id="1_daiap"]
 [ext_resource type="Texture2D" uid="uid://ce1u2tssjn13f" path="res://Character/ESC.png" id="2_i7ydv"]
@@ -52,10 +52,10 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"remove_attack_number"
+"method": &"_remove_attack_number"
 }, {
 "args": [],
-"method": &"attack_animation_finished"
+"method": &"_attack_animation_finished"
 }]
 }
 tracks/2/type = "value"
@@ -124,10 +124,10 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"remove_attack_number"
+"method": &"_remove_attack_number"
 }, {
 "args": [],
-"method": &"attack_animation_finished"
+"method": &"_attack_animation_finished"
 }]
 }
 tracks/2/type = "value"
@@ -196,10 +196,10 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"remove_attack_number"
+"method": &"_remove_attack_number"
 }, {
 "args": [],
-"method": &"attack_animation_finished"
+"method": &"_attack_animation_finished"
 }]
 }
 tracks/2/type = "value"
@@ -268,10 +268,10 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
-"method": &"remove_attack_number"
+"method": &"_remove_attack_number"
 }, {
 "args": [],
-"method": &"attack_animation_finished"
+"method": &"_attack_animation_finished"
 }]
 }
 tracks/2/type = "value"
@@ -340,7 +340,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"dash_animation_finished"
+"method": &"_dash_animation_finished"
 }]
 }
 tracks/2/type = "value"
@@ -397,7 +397,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"dash_animation_finished"
+"method": &"_dash_animation_finished"
 }]
 }
 tracks/2/type = "value"
@@ -516,23 +516,6 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_tvstp"]
-resource_name = "Run"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [7, 8, 9, 10]
-}
-
 [sub_resource type="Animation" id="Animation_mptim"]
 resource_name = "RunDown"
 length = 0.4
@@ -613,7 +596,6 @@ _data = {
 "Hit": SubResource("Animation_x0jev"),
 "Idle": SubResource("Animation_bb2ey"),
 "RESET": SubResource("Animation_0te7p"),
-"Run": SubResource("Animation_tvstp"),
 "RunDown": SubResource("Animation_mptim"),
 "RunLeft": SubResource("Animation_mgknr"),
 "RunRight": SubResource("Animation_o6njk"),

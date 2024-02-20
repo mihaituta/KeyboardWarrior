@@ -20,7 +20,7 @@ const EnemyDeathEffect = preload("res://Effects/EnemyDeathEffect.tscn")
 var facingDirection = false
 
 enum {
-	IDLE,
+	IDLE, 
 	CHASE,
 	ATTACK
 }
