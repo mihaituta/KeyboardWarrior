@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cpy58wr0cl5u3"]
+[gd_scene load_steps=37 format=3 uid="uid://cpy58wr0cl5u3"]
 
 [ext_resource type="Texture2D" uid="uid://jq203io6cfhx" path="res://Enemies/Archer.png" id="1_7wppi"]
 [ext_resource type="Shader" path="res://Character/player.gdshader" id="1_44sj8"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dqufs76284x12" path="res://stats.tscn" id="3_mdh86"]
 [ext_resource type="PackedScene" uid="uid://weeimq81hmjw" path="res://Character/EnemyAttackRange.tscn" id="4_6ubwr"]
 [ext_resource type="Texture2D" uid="uid://bif4s0eydw8he" path="res://Enemies/Bow.png" id="7_ge4cx"]
+[ext_resource type="AudioStream" uid="uid://dlksh4cfhnq66" path="res://Audio/Dash/77_flesh_02.wav" id="9_was5p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wefgg"]
 resource_local_to_scene = true
@@ -92,7 +93,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_0emq2"]
 resource_name = "Shoot"
-length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -119,6 +119,21 @@ tracks/1/keys = {
 "method": &"_bow_reload"
 }]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_was5p")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x80si"]
 _data = {
@@ -361,7 +376,7 @@ hframes = 5
 position = Vector2(11.5, -0.5)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-volume_db = -5.5
+volume_db = -8.0
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 active = false
