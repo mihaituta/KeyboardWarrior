@@ -1,4 +1,4 @@
-class_name EnemyKey 
+#class_name EnemyKey 
 extends CharacterBody2D
 
 @export var ACCELERATION = 300
@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var KNOCKBACK_FORCE = 150;
 @onready var stats = $stats
 @onready var hurtbox = $Hurtbox
-@onready var player = get_node("../../../Player")
+#@onready var player = get_node("../../../Player")
 @onready var enemyAttackRange = $EnemyAttackRange
 @onready var animationPlayer = $AnimationPlayer;
 @onready var animationTree = $AnimationTree
@@ -18,7 +18,7 @@ const EnemyDeathEffect = preload("res://Effects/EnemyDeathEffect.tscn")
 
 #false is left, true is right
 var facingDirection = false
-
+var player
 enum {
 	IDLE, 
 	CHASE,
@@ -29,6 +29,7 @@ enum {
 var knockback = Vector2.ZERO
 
 func _ready():
+	player = Global.player
 	animationTree.active = true
 
 func _physics_process(delta):

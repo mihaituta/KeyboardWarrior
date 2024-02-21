@@ -24,7 +24,7 @@ var input_vector = Vector2.ZERO;
 @onready var DashDurationTimer = $DashDurationTimer
 @onready var DashAgainTimer = $DashAgainTimer
 @onready var DashCooldownTimer = $DashCooldownTimer
-@onready var playerDeathRespawnTimer = $PlayerDeathRespawnTimer
+#@onready var playerDeathRespawnTimer = $PlayerDeathRespawnTimer
 
 @onready var hurtbox = $Hurtbox
 @onready var sprite2D = $Sprite2D;
@@ -38,6 +38,7 @@ const PlayerHurtSound = preload("res://Character/PlayerHurtSound.tscn")
 const PlayerDeathEffect = preload("res://Effects/PlayerDeathEffect.tscn")
 
 func _ready():
+	Global.player = self
 	stats.no_health.connect(_player_death)
 	animationTree.active = true;
 	CURRENT_DASH_COUNTER = MAX_DASH_COUNTER
@@ -149,11 +150,14 @@ func _on_attack_timer_timeout():
 
 func _on_hurtbox_area_entered(area):
 	Global.camera.shake(0.2,1)
-	stats.health -= area.damage
+	stats.health -= area.damage 
 	hurtbox.start_invincibility(0.5)
-	hurtbox.create_hit_effect()
+	#hurtbox.create_hit_effect()
 	var playerHurtSound = PlayerHurtSound.instantiate()
 	get_parent().add_child(playerHurtSound)
+	playerHurtSound.global_position = global_position
+	#if area.get_parent().name == "arrow":
+		#area.get_parent().queue_free()
 
 func _on_dash_timer_timeout():
 	if(CURRENT_DASH_COUNTER > 0):

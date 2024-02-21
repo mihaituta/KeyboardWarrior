@@ -1,7 +1,8 @@
-[gd_scene load_steps=21 format=3 uid="uid://cpy58wr0cl5u3"]
+[gd_scene load_steps=36 format=3 uid="uid://cpy58wr0cl5u3"]
 
 [ext_resource type="Texture2D" uid="uid://jq203io6cfhx" path="res://Enemies/Archer.png" id="1_7wppi"]
 [ext_resource type="Shader" path="res://Character/player.gdshader" id="1_44sj8"]
+[ext_resource type="Script" path="res://Enemies/archer_key.gd" id="1_vccgy"]
 [ext_resource type="PackedScene" uid="uid://we6jgigp3nt3" path="res://Overlap/hurtbox.tscn" id="2_ndtin"]
 [ext_resource type="Texture2D" uid="uid://buw1fjfii4jo1" path="res://Shadows/ShadowESC.png" id="3_180qh"]
 [ext_resource type="PackedScene" uid="uid://dqufs76284x12" path="res://stats.tscn" id="3_mdh86"]
@@ -9,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bif4s0eydw8he" path="res://Enemies/Bow.png" id="7_ge4cx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wefgg"]
+resource_local_to_scene = true
 shader = ExtResource("1_44sj8")
 shader_parameter/active = false
 
@@ -20,16 +22,16 @@ height = 22.0
 radius = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_soy16"]
-radius = 126.0
+radius = 185.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a3lbi"]
+resource_local_to_scene = true
 shader = ExtResource("1_44sj8")
 shader_parameter/active = false
 
 [sub_resource type="Animation" id="Animation_bapak"]
 resource_name = "Shoot"
-length = 0.4
-loop_mode = 1
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -37,25 +39,24 @@ tracks/0/path = NodePath("Bow/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [1, 2, 3, 4]
+"values": [1, 2, 3]
 }
-
-[sub_resource type="Animation" id="Animation_bjvm6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Bow/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"values": [{
+"args": [],
+"method": &"_bow_hold"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_457cf"]
@@ -74,11 +75,170 @@ tracks/0/keys = {
 "values": [0]
 }
 
+[sub_resource type="Animation" id="Animation_bjvm6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bow/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0emq2"]
+resource_name = "Shoot"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bow/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_bow_reload"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x80si"]
 _data = {
+"Draw": SubResource("Animation_bapak"),
 "Idle": SubResource("Animation_457cf"),
 "RESET": SubResource("Animation_bjvm6"),
-"Shoot": SubResource("Animation_bapak")
+"Shoot": SubResource("Animation_0emq2")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oplhx"]
+animation = &"Draw"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4rjsf"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ffi1v"]
+animation = &"Shoot"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wmnra"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kt0nu"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mgi65"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_st7u3"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vx3ye"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_n2hpl"]
+states/Draw/node = SubResource("AnimationNodeAnimation_oplhx")
+states/Draw/position = Vector2(710, 109)
+states/End/position = Vector2(1152, 89)
+states/Idle/node = SubResource("AnimationNodeAnimation_4rjsf")
+states/Idle/position = Vector2(487, 109)
+states/Shoot/node = SubResource("AnimationNodeAnimation_ffi1v")
+states/Shoot/position = Vector2(600, 218)
+states/Start/position = Vector2(300, 109)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_wmnra"), "Idle", "Draw", SubResource("AnimationNodeStateMachineTransition_kt0nu"), "Draw", "Shoot", SubResource("AnimationNodeStateMachineTransition_mgi65"), "Shoot", "Draw", SubResource("AnimationNodeStateMachineTransition_st7u3"), "Shoot", "Idle", SubResource("AnimationNodeStateMachineTransition_vx3ye")]
+
+[sub_resource type="Animation" id="Animation_qkqff"]
+resource_name = "Idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_h0eq6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5yad0"]
+resource_name = "Run"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p0b44"]
+_data = {
+"Idle": SubResource("Animation_qkqff"),
+"RESET": SubResource("Animation_h0eq6"),
+"Run": SubResource("Animation_5yad0")
+}
+
+[sub_resource type="Animation" id="Animation_cmxr6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bow/Sprite2D:material:shader_parameter/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_7vi3g"]
@@ -138,33 +298,6 @@ tracks/1/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_cmxr6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/active")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Bow/Sprite2D:material:shader_parameter/active")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_brvil"]
 _data = {
 "RESET": SubResource("Animation_cmxr6"),
@@ -173,6 +306,10 @@ _data = {
 }
 
 [node name="archer_key" type="CharacterBody2D"]
+z_index = 1
+collision_layer = 7
+collision_mask = 4
+script = ExtResource("1_vccgy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_wefgg")
@@ -196,6 +333,7 @@ visible = false
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
+visible = false
 position = Vector2(1, 2)
 shape = SubResource("CircleShape2D_h8mjk")
 debug_color = Color(0.862745, 0.32549, 0.388235, 0.419608)
@@ -204,36 +342,62 @@ debug_color = Color(0.862745, 0.32549, 0.388235, 0.419608)
 max_health = 2
 
 [node name="EnemyAttackRange" parent="." instance=ExtResource("4_6ubwr")]
-monitoring = false
 
 [node name="CollisionShape2D" parent="EnemyAttackRange" index="0"]
-visible = false
 rotation = -1.5708
 shape = SubResource("CircleShape2D_soy16")
 debug_color = Color(0, 0.6, 0.701961, 0.121569)
 
 [node name="Bow" type="Node2D" parent="."]
-scale = Vector2(1, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="Bow"]
+texture_filter = 1
 material = SubResource("ShaderMaterial_a3lbi")
-position = Vector2(15, -7.10543e-15)
+position = Vector2(15, 0)
 texture = ExtResource("7_ge4cx")
 hframes = 5
+
+[node name="ArrowSpawnPivot" type="Marker2D" parent="Bow"]
+position = Vector2(11.5, -0.5)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -5.5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
 libraries = {
 "": SubResource("AnimationLibrary_x80si")
 }
-autoplay = "Shoot"
+tree_root = SubResource("AnimationNodeStateMachine_n2hpl")
+anim_player = NodePath("../BowAnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_p0b44")
+}
+
+[node name="BowAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x80si")
+}
 
 [node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_brvil")
 }
+
+[node name="ArrowHoldTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="BowReloadTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="invincibility_ended" from="Hurtbox" to="." method="_on_hurtbox_invincibility_ended"]
+[connection signal="invincibility_started" from="Hurtbox" to="." method="_on_hurtbox_invincibility_started"]
+[connection signal="no_health" from="stats" to="." method="_on_stats_no_health"]
+[connection signal="timeout" from="ArrowHoldTimer" to="." method="_on_arrow_hold_timer_timeout"]
+[connection signal="timeout" from="BowReloadTimer" to="." method="_on_bow_reload_timer_timeout"]
 
 [editable path="Hurtbox"]
 [editable path="EnemyAttackRange"]

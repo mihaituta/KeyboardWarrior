@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://brlb0kcoge053"]
+[gd_scene load_steps=6 format=3 uid="uid://brlb0kcoge053"]
 
 [ext_resource type="PackedScene" uid="uid://ck1gmj4d4e72g" path="res://World/Rooms/Room.tscn" id="1_xqqsq"]
 [ext_resource type="PackedScene" uid="uid://pyk72c5hscu1" path="res://World/Doors/Door_Left.tscn" id="2_h42bf"]
 [ext_resource type="PackedScene" uid="uid://b6hpkw8jh62mb" path="res://Enemies/EnemyKey.tscn" id="3_jrfah"]
+[ext_resource type="PackedScene" uid="uid://cpy58wr0cl5u3" path="res://Enemies/archer_key.tscn" id="4_iobk7"]
 [ext_resource type="PackedScene" uid="uid://daf1b6a3h6bjd" path="res://Character/Del.tscn" id="4_nhr2d"]
 
 [node name="Room" instance=ExtResource("1_xqqsq")]
@@ -31,5 +32,14 @@ position = Vector2(300, 77)
 [node name="EnemyKey5" parent="Enemies" index="4" instance=ExtResource("3_jrfah")]
 position = Vector2(305, 210)
 
-[node name="StaticBody2D" parent="." index="8" instance=ExtResource("4_nhr2d")]
+[node name="archer_key" parent="Enemies" index="5" instance=ExtResource("4_iobk7")]
+position = Vector2(410, 70)
+
+[node name="archer_key2" parent="Enemies" index="6" instance=ExtResource("4_iobk7")]
+position = Vector2(415, 215)
+
+[node name="archer_key3" parent="Enemies" index="7" instance=ExtResource("4_iobk7")]
+position = Vector2(370, 135)
+
+[node name="ESC" parent="." index="8" instance=ExtResource("4_nhr2d")]
 position = Vector2(428, 136)

@@ -718,6 +718,7 @@ visible = false
 position = Vector2(-15, 3)
 texture = ExtResource("5_aobdr")
 hframes = 4
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sword")
@@ -734,7 +735,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_2y022")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Attack/blend_position = 0
-parameters/Run/blend_position = -0.998986
+parameters/Run/blend_position = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

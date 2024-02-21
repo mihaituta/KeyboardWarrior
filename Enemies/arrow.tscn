@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://d2bk8h0oba2th"]
+
+[ext_resource type="Texture2D" uid="uid://b8voqpg80uujm" path="res://Enemies/Arrow.png" id="1_4i35t"]
+[ext_resource type="Script" path="res://Enemies/arrow.gd" id="1_fmtwy"]
+[ext_resource type="PackedScene" uid="uid://dya1gj5i5dc2d" path="res://Overlap/hitbox.tscn" id="2_6xas5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d0wx0"]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hbv3b"]
+radius = 3.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kmw7i"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+initial_velocity_min = 40.0
+initial_velocity_max = 60.0
+gravity = Vector3(0, 0, 0)
+turbulence_noise_strength = 5.71
+turbulence_noise_scale = 0.385
+
+[sub_resource type="Gradient" id="Gradient_21kff"]
+offsets = PackedFloat32Array(0, 0.68)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7u2do"]
+gradient = SubResource("Gradient_21kff")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="arrow" type="Node2D"]
+z_index = 3
+script = ExtResource("1_fmtwy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_4i35t")
+
+[node name="Hitbox" parent="." instance=ExtResource("2_6xas5")]
+position = Vector2(6, 0)
+collision_layer = 8
+monitoring = false
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_d0wx0")
+
+[node name="ImpactDetector" type="Area2D" parent="."]
+position = Vector2(6, 0)
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ImpactDetector"]
+shape = SubResource("CircleShape2D_hbv3b")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-5, 0)
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_kmw7i")
+lifetime = 0.2
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(0.78125, 0.78125)
+energy = 0.5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_7u2do")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="ImpactDetector" to="." method="_on_impact_detector_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+
+[editable path="Hitbox"]

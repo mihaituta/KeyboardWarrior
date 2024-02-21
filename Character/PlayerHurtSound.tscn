@@ -21,16 +21,21 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0dq1t")
 }],
-"loop": true,
-"name": &"default",
-"speed": 5.0
+"loop": false,
+"name": &"Animate",
+"speed": 10.0
 }]
 
 [node name="PlayerHurtSound" type="AnimatedSprite2D"]
+z_index = 10
 sprite_frames = SubResource("SpriteFrames_f6jus")
+animation = &"Animate"
+frame = 1
+frame_progress = 1.0
+offset = Vector2(0, -12)
 script = ExtResource("2_t222b")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_5nxic")
-volume_db = -15.0
+volume_db = -20.0
 autoplay = true

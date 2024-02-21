@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dl78i7xpkv2y0" path="res://World/Rooms/Room1.tscn" id="1_60anm"]
 [ext_resource type="PackedScene" uid="uid://bwbhrjwu8yolb" path="res://Character/player.tscn" id="2_6oqpl"]
+[ext_resource type="AudioStream" uid="uid://pd1jdccnifkn" path="res://Audio/Music/27 14 BOSS fixing LOOP.mp3" id="2_y2d1q"]
 [ext_resource type="Script" path="res://World/Camera.gd" id="4_h7wmm"]
 [ext_resource type="PackedScene" uid="uid://clksxmyorn5ct" path="res://World/Rooms/Room3.tscn" id="5_7tiyi"]
-[ext_resource type="AudioStream" uid="uid://c2pj7p2vjijk5" path="res://Audio/Music/Do or Die.wav" id="6_de03g"]
 [ext_resource type="PackedScene" uid="uid://fwqwpj724k8l" path="res://World/Rooms/Room2.tscn" id="6_ltpdv"]
 [ext_resource type="PackedScene" uid="uid://cpebsxlvhg25f" path="res://UI/HealthUI.tscn" id="7_51obn"]
 [ext_resource type="PackedScene" uid="uid://daegrckielg7n" path="res://World/Rooms/Room4.tscn" id="8_i5q5f"]
@@ -15,13 +15,14 @@ y_sort_enabled = true
 texture_filter = 1
 
 [node name="Player" parent="." instance=ExtResource("2_6oqpl")]
-position = Vector2(217, 158)
+position = Vector2(408, 136)
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" parent="Player" index="7"]
 visible = false
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("6_de03g")
+stream = ExtResource("2_y2d1q")
 volume_db = -20.0
 autoplay = true
 

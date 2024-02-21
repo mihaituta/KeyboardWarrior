@@ -7,3 +7,4 @@ func _ready():
 #when the effect animation finishes the object will be destroyed
 func _on_animation_finished():
 	queue_free()
+ 

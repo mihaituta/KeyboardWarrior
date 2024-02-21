@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cwdnapyg7vj7c" path="res://IntroScene/3.jpg" id="3_j47hw"]
 [ext_resource type="FontFile" uid="uid://dx1wf14m2wiys" path="res://UI/Font/m3x6.ttf" id="3_wsmh7"]
 [ext_resource type="Texture2D" uid="uid://d0ovsbphhqrtd" path="res://IntroScene/4.jpg" id="4_fwt6h"]
-[ext_resource type="AudioStream" uid="uid://sqpxutix7sje" path="res://Audio/Pixel 3.wav" id="7_1rste"]
 [ext_resource type="FontFile" uid="uid://dxdscp4kqbwb3" path="res://UI/Font/DungeonFont.ttf" id="7_4qhvc"]
+[ext_resource type="AudioStream" uid="uid://c4h40bkot46d2" path="res://Audio/Music/Pixel 3.mp3" id="8_a67up"]
 
 [sub_resource type="Animation" id="Animation_n8hja"]
 resource_name = "Page1"
@@ -312,7 +312,7 @@ autowrap_mode = 2
 volume_db = -5.0
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_1rste")
+stream = ExtResource("8_a67up")
 volume_db = -25.0
 autoplay = true
 
