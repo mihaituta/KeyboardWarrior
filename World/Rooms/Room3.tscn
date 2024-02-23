@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://clksxmyorn5ct"]
+[gd_scene load_steps=7 format=3 uid="uid://clksxmyorn5ct"]
 
 [ext_resource type="PackedScene" uid="uid://ck1gmj4d4e72g" path="res://World/Rooms/Room.tscn" id="1_5xf3w"]
 [ext_resource type="PackedScene" uid="uid://d0hibruxy1fy5" path="res://World/Doors/Door_Up.tscn" id="3_aa22p"]
 [ext_resource type="PackedScene" uid="uid://b6hpkw8jh62mb" path="res://Enemies/EnemyKey.tscn" id="3_nlkxi"]
 [ext_resource type="PackedScene" uid="uid://dwuhn4wbg5o51" path="res://World/Doors/Door_Down.tscn" id="3_ovfv4"]
 [ext_resource type="PackedScene" uid="uid://cpy58wr0cl5u3" path="res://Enemies/archer_key.tscn" id="5_jdp81"]
+[ext_resource type="PackedScene" uid="uid://5oxw7xfd6tef" path="res://Enemies/mage_key.tscn" id="6_j38u8"]
 
 [node name="Room3" instance=ExtResource("1_5xf3w")]
 
@@ -20,16 +21,16 @@ position = Vector2(240, 256)
 position = Vector2(240, 43)
 
 [node name="EnemyKey2" parent="Enemies" index="0" instance=ExtResource("3_nlkxi")]
-position = Vector2(241.745, 70.1051)
+position = Vector2(48.745, 219.105)
 
-[node name="EnemyKey" parent="Enemies" index="1" instance=ExtResource("3_nlkxi")]
-position = Vector2(47.3561, 218.053)
-
-[node name="EnemyKey3" parent="Enemies" index="2" instance=ExtResource("3_nlkxi")]
+[node name="EnemyKey3" parent="Enemies" index="1" instance=ExtResource("3_nlkxi")]
 position = Vector2(419.805, 217.926)
 
-[node name="archer_key" parent="Enemies" index="3" instance=ExtResource("5_jdp81")]
+[node name="archer_key" parent="Enemies" index="2" instance=ExtResource("5_jdp81")]
 position = Vector2(109, 90)
 
-[node name="archer_key2" parent="Enemies" index="4" instance=ExtResource("5_jdp81")]
-position = Vector2(371, 89)
+[node name="archer_key2" parent="Enemies" index="3" instance=ExtResource("5_jdp81")]
+position = Vector2(357, 92)
+
+[node name="mage_key" parent="Enemies" index="4" instance=ExtResource("6_j38u8")]
+position = Vector2(243, 77)

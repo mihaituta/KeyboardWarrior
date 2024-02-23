@@ -538,7 +538,7 @@ texture = ExtResource("2_nepcm")
 24:8/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_uxcbk"]
-physics_layer_0/collision_layer = 6
+physics_layer_0/collision_layer = 70
 sources/1 = SubResource("TileSetAtlasSource_cfqpt")
 
 [node name="TileMap" type="TileMap"]

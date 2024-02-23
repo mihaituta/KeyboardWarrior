@@ -41,7 +41,7 @@ func _ready():
 	animationTree.active = true
 
 func _physics_process(delta):
-	_rotate_bow(delta)
+	_rotate_bow()
 	_set_knockback_velocity(delta)
 	#facingDirection = velocity.x > 0
 	
@@ -71,9 +71,9 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func _rotate_bow(delta):
+func _rotate_bow():
 	if player != null:
-		bow.rotation = lerp_angle(bow.rotation, global_position.angle_to_point(player.global_position), 0.05)
+		bow.rotation = lerp_angle(bow.rotation, global_position.angle_to_point(player.global_position + Vector2(0,-10)), 0.08)
 	#var angle_to_player = get_angle_to(player.global_position)
 	#bow.rotation = move_toward(bow.rotation, angle_to_player, delta * 20 )
 	#work but do it instantly

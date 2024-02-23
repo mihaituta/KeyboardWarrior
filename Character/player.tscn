@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bwbhrjwu8yolb"]
+[gd_scene load_steps=63 format=3 uid="uid://bwbhrjwu8yolb"]
 
 [ext_resource type="Script" path="res://Character/player.gd" id="1_daiap"]
 [ext_resource type="Texture2D" uid="uid://ce1u2tssjn13f" path="res://Character/ESC.png" id="2_i7ydv"]
@@ -21,6 +21,9 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_quych")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mfykl"]
+height = 26.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vx1dk"]
 radius = 3.0
@@ -816,10 +819,19 @@ frame = 23
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(2, 2)
 energy = 0.5
-shadow_enabled = true
 texture = SubResource("GradientTexture2D_g8j6h")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PlayerProjectileDetector" type="Area2D" parent="."]
+visible = false
+collision_layer = 64
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerProjectileDetector"]
+position = Vector2(1, -10)
+shape = SubResource("CapsuleShape2D_mfykl")
+debug_color = Color(0, 0.6, 0.701961, 0.25098)
+
+[node name="movementCollision" type="CollisionShape2D" parent="."]
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_vx1dk")
 
@@ -842,6 +854,7 @@ parameters/Dash/blend_position = -0.986815
 parameters/Run/blend_position = Vector2(0.00105822, 1.00023)
 
 [node name="HitboxPivot" type="Marker2D" parent="."]
+visible = false
 position = Vector2(0, -9)
 scale = Vector2(-1, 1)
 
@@ -850,11 +863,12 @@ position = Vector2(8, 0)
 collision_layer = 16
 
 [node name="CollisionShape2D" parent="HitboxPivot/SwordHitbox" index="0"]
-position = Vector2(-1, 0)
+position = Vector2(-1, -1)
 shape = SubResource("CapsuleShape2D_ke52o")
 disabled = true
 
 [node name="Hurtbox" parent="." instance=ExtResource("5_480o3")]
+visible = false
 collision_mask = 8
 metadata/_edit_group_ = true
 

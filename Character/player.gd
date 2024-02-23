@@ -156,8 +156,6 @@ func _on_hurtbox_area_entered(area):
 	var playerHurtSound = PlayerHurtSound.instantiate()
 	get_parent().add_child(playerHurtSound)
 	playerHurtSound.global_position = global_position
-	#if area.get_parent().name == "arrow":
-		#area.get_parent().queue_free()
 
 func _on_dash_timer_timeout():
 	if(CURRENT_DASH_COUNTER > 0):
@@ -174,3 +172,5 @@ func _on_hurtbox_invincibility_started():
 
 func _on_hurtbox_invincibility_ended():
 	blinkAnimationPlayer.play("Stop")
+
+

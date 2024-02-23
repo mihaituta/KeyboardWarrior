@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2bk8h0oba2th"]
+[gd_scene load_steps=13 format=3 uid="uid://d2bk8h0oba2th"]
 
-[ext_resource type="Texture2D" uid="uid://b8voqpg80uujm" path="res://Enemies/Arrow.png" id="1_4i35t"]
 [ext_resource type="Script" path="res://Enemies/arrow.gd" id="1_fmtwy"]
 [ext_resource type="PackedScene" uid="uid://dya1gj5i5dc2d" path="res://Overlap/hitbox.tscn" id="2_6xas5"]
+[ext_resource type="Texture2D" uid="uid://bhk608pfbfj0p" path="res://Enemies/Arrow2.png" id="2_cx57p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d0wx0"]
 radius = 3.0
@@ -13,10 +13,11 @@ radius = 3.0
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kmw7i"]
 particle_flag_disable_z = true
 direction = Vector3(-1, 0, 0)
-spread = 35.0
-initial_velocity_min = 40.0
-initial_velocity_max = 60.0
+spread = 80.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
 gravity = Vector3(0, 0, 0)
+damping_max = 42.254
 turbulence_noise_strength = 5.71
 turbulence_noise_scale = 0.385
 
@@ -29,12 +30,191 @@ gradient = SubResource("Gradient_7iopw")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
+[sub_resource type="Animation" id="Animation_7dfde"]
+resource_name = "Fly"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_j5cgy"]
+resource_name = "Hit"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.854902, 0.854902, 0.854902, 1), Color(0.854902, 0.854902, 0.854902, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GPUParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PointLight2D:energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.5, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hitbox:monitorable")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_8uevo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.854902, 0.854902, 0.854902, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PointLight2D:energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hitbox:monitorable")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o5kso"]
+_data = {
+"Fly": SubResource("Animation_7dfde"),
+"Hit": SubResource("Animation_j5cgy"),
+"RESET": SubResource("Animation_8uevo")
+}
+
 [node name="arrow" type="Node2D"]
-z_index = 3
+z_index = 2
 script = ExtResource("1_fmtwy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_4i35t")
+modulate = Color(0.854902, 0.854902, 0.854902, 1)
+position = Vector2(0, 0.5)
+texture = ExtResource("2_cx57p")
+hframes = 4
 
 [node name="Hitbox" parent="." instance=ExtResource("2_6xas5")]
 position = Vector2(6, 0)
@@ -47,7 +227,9 @@ shape = SubResource("CircleShape2D_d0wx0")
 
 [node name="ImpactDetector" type="Area2D" parent="."]
 position = Vector2(6, 0)
-monitorable = false
+collision_layer = 129
+collision_mask = 64
+priority = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ImpactDetector"]
 shape = SubResource("CircleShape2D_hbv3b")
@@ -56,9 +238,11 @@ shape = SubResource("CircleShape2D_hbv3b")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(-9, 0)
-amount = 15
+emitting = false
+amount = 20
 process_material = SubResource("ParticleProcessMaterial_kmw7i")
 lifetime = 0.3
+one_shot = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(0.78125, 0.78125)
@@ -68,7 +252,13 @@ texture = SubResource("GradientTexture2D_7u2do")
 
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="body_entered" from="ImpactDetector" to="." method="_on_impact_detector_body_entered"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_o5kso")
+}
+autoplay = "Fly"
+
+[connection signal="area_entered" from="ImpactDetector" to="." method="_on_impact_detector_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 
 [editable path="Hitbox"]

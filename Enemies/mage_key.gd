@@ -18,6 +18,7 @@ extends CharacterBody2D
 @onready var staff_point_pivot: Marker2D = $Staff/StaffPointPivot
 @onready var staff_hold_timer: Timer = $StaffHoldTimer
 @onready var staff_reload_timer: Timer = $StaffReloadTimer
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 const EnemyDeathEffect = preload("res://Effects/EnemyDeathEffect.tscn")
 const projectile = preload("res://Enemies/fire.tscn")
@@ -58,9 +59,11 @@ func _physics_process(delta):
 		ATTACK:
 			animationPlayer.play("Idle")
 			animationState.travel("Raise")
+			audio_stream_player.play()
 			velocity =  Vector2.ZERO 
 			if !enemyAttackRange._playerInRange():
 				state = CHASE
+				audio_stream_player.stop()
 		RELOAD:
 			animationState.travel("Shoot")
 		SHAKE:
@@ -72,7 +75,7 @@ func _shoot_projectile():
 	Global.camera.shake(0.1,1)
 	var projectile_instance = projectile.instantiate()
 	projectile_instance.position = staff_point_pivot.global_position
-	if player != null: projectile_instance.look_at(player.global_position)
+	if player != null: projectile_instance.look_at(player.global_position - Vector2(0,10))
 	add_child(projectile_instance)
 	
 func _staff_hold():

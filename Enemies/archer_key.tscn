@@ -382,7 +382,7 @@ hframes = 4
 frame = 1
 
 [node name="ShadowSprite" type="Sprite2D" parent="."]
-position = Vector2(0.5, 11)
+position = Vector2(0.5, 12)
 texture = ExtResource("3_180qh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
