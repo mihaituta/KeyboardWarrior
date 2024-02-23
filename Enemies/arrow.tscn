@@ -13,19 +13,19 @@ radius = 3.0
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kmw7i"]
 particle_flag_disable_z = true
 direction = Vector3(-1, 0, 0)
-spread = 10.0
+spread = 35.0
 initial_velocity_min = 40.0
 initial_velocity_max = 60.0
 gravity = Vector3(0, 0, 0)
 turbulence_noise_strength = 5.71
 turbulence_noise_scale = 0.385
 
-[sub_resource type="Gradient" id="Gradient_21kff"]
+[sub_resource type="Gradient" id="Gradient_7iopw"]
 offsets = PackedFloat32Array(0, 0.68)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7u2do"]
-gradient = SubResource("Gradient_21kff")
+gradient = SubResource("Gradient_7iopw")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -55,10 +55,10 @@ shape = SubResource("CircleShape2D_hbv3b")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(-5, 0)
-amount = 10
+position = Vector2(-9, 0)
+amount = 15
 process_material = SubResource("ParticleProcessMaterial_kmw7i")
-lifetime = 0.2
+lifetime = 0.3
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(0.78125, 0.78125)

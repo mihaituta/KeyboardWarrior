@@ -10,17 +10,17 @@ extends CharacterBody2D
 #@onready var player = get_node("../../../Player")
 @onready var enemyAttackRange = $EnemyAttackRange
 @onready var animationPlayer = $AnimationPlayer;
-@onready var bowAnimationPlayer = $BowAnimationPlayer
+@onready var staffAnimationPlayer = $StaffAnimationPlayer
 @onready var animationTree = $AnimationTree
 @onready var animationState = animationTree.get("parameters/playback");
 @onready var blinkAnimationPlayer = $BlinkAnimationPlayer
-@onready var bow = $Bow
-@onready var arrow_spawn_pivot = $Bow/ArrowSpawnPivot
-@onready var arrow_hold_timer = $ArrowHoldTimer
-@onready var bow_reload_timer = $BowReloadTimer
+@onready var staff = $Staff
+@onready var staff_point_pivot: Marker2D = $Staff/StaffPointPivot
+@onready var staff_hold_timer: Timer = $StaffHoldTimer
+@onready var staff_reload_timer: Timer = $StaffReloadTimer
 
 const EnemyDeathEffect = preload("res://Effects/EnemyDeathEffect.tscn")
-const arrow = preload("res://Enemies/arrow.tscn")
+const projectile = preload("res://Enemies/fire.tscn")
 
 #false is left, true is right
 var facingDirection = false
@@ -41,9 +41,7 @@ func _ready():
 	animationTree.active = true
 
 func _physics_process(delta):
-	_rotate_bow(delta)
 	_set_knockback_velocity(delta)
-	#facingDirection = velocity.x > 0
 	
 	match state: 
 		IDLE:
@@ -59,7 +57,7 @@ func _physics_process(delta):
 				state = IDLE
 		ATTACK:
 			animationPlayer.play("Idle")
-			animationState.travel("Draw")
+			animationState.travel("Raise")
 			velocity =  Vector2.ZERO 
 			if !enemyAttackRange._playerInRange():
 				state = CHASE
@@ -70,35 +68,25 @@ func _physics_process(delta):
 			
 	move_and_slide()
 
-
-func _rotate_bow(delta):
-	if player != null:
-		bow.rotation = lerp_angle(bow.rotation, global_position.angle_to_point(player.global_position), 0.05)
-	#var angle_to_player = get_angle_to(player.global_position)
-	#bow.rotation = move_toward(bow.rotation, angle_to_player, delta * 20 )
-	#work but do it instantly
-	#bow.rotation = global_position.angle_to_point(player.global_position)	
-	#bow.look_at(player.global_position)
+func _shoot_projectile():
+	Global.camera.shake(0.1,1)
+	var projectile_instance = projectile.instantiate()
+	projectile_instance.position = staff_point_pivot.global_position
+	if player != null: projectile_instance.look_at(player.global_position)
+	add_child(projectile_instance)
 	
-func _shoot_arrow():
-	var arrow_instance = arrow.instantiate()
-	arrow_instance.position = arrow_spawn_pivot.global_position
-	#arrow_instance.look_at(player.global_position)
-	arrow_instance.rotation = bow.rotation
-	add_child(arrow_instance)
-	
-func _bow_hold():
-	_start_timer(arrow_hold_timer, 1)
+func _staff_hold():
+	_start_timer(staff_hold_timer, 0.5)
 	state = SHAKE
 
-func _bow_reload():
-	_start_timer(bow_reload_timer, 0.5)
+func _staff_reload():
+	_start_timer(staff_reload_timer, 1.5)
 
-func _on_arrow_hold_timer_timeout():
-	_shoot_arrow()
+func _on_staff_hold_timer_timeout() -> void:
+	#_shoot_projectile()
 	state = RELOAD
 
-func _on_bow_reload_timer_timeout():
+func _on_staff_reload_timer_timeout() -> void:
 	state = ATTACK
 
 func _start_timer(timer, duration):
@@ -113,9 +101,6 @@ func accelerate_towards_point(point, delta):
 	var direction = global_position.direction_to(point)
 	velocity = velocity.move_toward(direction * MAX_SPEED, ACCELERATION * delta) 
 	animationPlayer.play("Run")
-	#animationTree.set("parameters/Run/blend_position", direction.x)
-	#animationTree.set("parameters/Attack/blend_position", direction.x)
-	#animationState.travel("Run")
 	
 func _on_hurtbox_area_entered(area):
 	Global.camera.shake(0.1,1)
@@ -147,3 +132,4 @@ func _on_hurtbox_invincibility_started():
 	
 func _on_hurtbox_invincibility_ended():
 	blinkAnimationPlayer.play("Stop")
+

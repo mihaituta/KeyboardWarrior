@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://cpy58wr0cl5u3"]
+[gd_scene load_steps=39 format=3 uid="uid://cpy58wr0cl5u3"]
 
 [ext_resource type="Texture2D" uid="uid://jq203io6cfhx" path="res://Enemies/Archer.png" id="1_7wppi"]
 [ext_resource type="Shader" path="res://Character/player.gdshader" id="1_44sj8"]
@@ -36,13 +36,13 @@ length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Bow/Sprite2D:frame")
+tracks/0/path = NodePath("Bow/BowPivot/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.8),
 "transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [1, 2, 3]
 }
 tracks/1/type = "method"
@@ -66,29 +66,71 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Bow/Sprite2D:frame")
+tracks/0/path = NodePath("Bow/BowPivot/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_bjvm6"]
+resource_name = "RESET"
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Bow/Sprite2D:frame")
+tracks/0/path = NodePath("Bow/BowPivot:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_mfvac"]
+resource_name = "Shake"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bow/BowPivot/Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [Vector2(15, 0), Vector2(15, 0.5), Vector2(15, 0), Vector2(15, -0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bow/BowPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.0523599, 0.0, -0.0523599, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Bow/BowPivot/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3]
 }
 
 [sub_resource type="Animation" id="Animation_0emq2"]
@@ -96,13 +138,13 @@ resource_name = "Shoot"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Bow/Sprite2D:frame")
+tracks/0/path = NodePath("Bow/BowPivot/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [4]
 }
 tracks/1/type = "method"
@@ -140,6 +182,7 @@ _data = {
 "Draw": SubResource("Animation_bapak"),
 "Idle": SubResource("Animation_457cf"),
 "RESET": SubResource("Animation_bjvm6"),
+"Shake": SubResource("Animation_mfvac"),
 "Shoot": SubResource("Animation_0emq2")
 }
 
@@ -149,6 +192,9 @@ animation = &"Draw"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4rjsf"]
 animation = &"Idle"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_13em5"]
+animation = &"Shake"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ffi1v"]
 animation = &"Shoot"
 
@@ -157,11 +203,11 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kt0nu"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mgi65"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_st7u3"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vx3ye"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ufklw"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2bdi1"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_n2hpl"]
 states/Draw/node = SubResource("AnimationNodeAnimation_oplhx")
@@ -169,10 +215,13 @@ states/Draw/position = Vector2(710, 109)
 states/End/position = Vector2(1152, 89)
 states/Idle/node = SubResource("AnimationNodeAnimation_4rjsf")
 states/Idle/position = Vector2(487, 109)
+states/Shake/node = SubResource("AnimationNodeAnimation_13em5")
+states/Shake/position = Vector2(883, 109)
 states/Shoot/node = SubResource("AnimationNodeAnimation_ffi1v")
-states/Shoot/position = Vector2(600, 218)
+states/Shoot/position = Vector2(710, 219)
 states/Start/position = Vector2(300, 109)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_wmnra"), "Idle", "Draw", SubResource("AnimationNodeStateMachineTransition_kt0nu"), "Draw", "Shoot", SubResource("AnimationNodeStateMachineTransition_mgi65"), "Shoot", "Draw", SubResource("AnimationNodeStateMachineTransition_st7u3"), "Shoot", "Idle", SubResource("AnimationNodeStateMachineTransition_vx3ye")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_wmnra"), "Idle", "Draw", SubResource("AnimationNodeStateMachineTransition_kt0nu"), "Shoot", "Idle", SubResource("AnimationNodeStateMachineTransition_vx3ye"), "Draw", "Shake", SubResource("AnimationNodeStateMachineTransition_ufklw"), "Shake", "Shoot", SubResource("AnimationNodeStateMachineTransition_2bdi1")]
+graph_offset = Vector2(-38, 62)
 
 [sub_resource type="Animation" id="Animation_qkqff"]
 resource_name = "Idle"
@@ -246,13 +295,13 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Bow/Sprite2D:material:shader_parameter/active")
+tracks/1/path = NodePath("Bow/BowPivot/Sprite2D:material:shader_parameter/active")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 
@@ -275,13 +324,13 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Bow/Sprite2D:material:shader_parameter/active")
+tracks/1/path = NodePath("Bow/BowPivot/Sprite2D:material:shader_parameter/active")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
+"update": 0,
 "values": [true, false]
 }
 
@@ -291,13 +340,13 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Bow/Sprite2D:material:shader_parameter/active")
+tracks/0/path = NodePath("Bow/BowPivot/Sprite2D:material:shader_parameter/active")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [false]
 }
 tracks/1/type = "value"
@@ -337,7 +386,6 @@ position = Vector2(0.5, 11)
 texture = ExtResource("3_180qh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(1, 2)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_y8nnc")
@@ -348,7 +396,6 @@ visible = false
 collision_mask = 16
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-visible = false
 position = Vector2(1, 2)
 shape = SubResource("CircleShape2D_h8mjk")
 debug_color = Color(0.862745, 0.32549, 0.388235, 0.419608)
@@ -357,6 +404,7 @@ debug_color = Color(0.862745, 0.32549, 0.388235, 0.419608)
 max_health = 2
 
 [node name="EnemyAttackRange" parent="." instance=ExtResource("4_6ubwr")]
+visible = false
 
 [node name="CollisionShape2D" parent="EnemyAttackRange" index="0"]
 rotation = -1.5708
@@ -364,13 +412,17 @@ shape = SubResource("CircleShape2D_soy16")
 debug_color = Color(0, 0.6, 0.701961, 0.121569)
 
 [node name="Bow" type="Node2D" parent="."]
+rotation = -6.28319
 
-[node name="Sprite2D" type="Sprite2D" parent="Bow"]
+[node name="BowPivot" type="Marker2D" parent="Bow"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Bow/BowPivot"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_a3lbi")
-position = Vector2(15, 0)
+position = Vector2(15, 0.5)
 texture = ExtResource("7_ge4cx")
 hframes = 5
+frame = 4
 
 [node name="ArrowSpawnPivot" type="Marker2D" parent="Bow"]
 position = Vector2(11.5, -0.5)

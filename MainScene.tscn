@@ -3,23 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://bbewl33hgoqsf" path="res://World/world.tscn" id="1_4l228"]
 [ext_resource type="PackedScene" uid="uid://kcq81lx3bvbj" path="res://IntroScene/IntroScene.tscn" id="2_mit6v"]
 
-[node name="RootScene" type="Node2D"]
+[node name="MainScene" type="Node2D"]
 
 [node name="World" parent="." instance=ExtResource("1_4l228")]
 
 [node name="IntroScene" parent="." instance=ExtResource("2_mit6v")]
 
-[node name="1" parent="IntroScene" index="2"]
-position = Vector2(125, 68)
-
-[node name="2" parent="IntroScene" index="3"]
-position = Vector2(327, 68)
-
-[node name="3" parent="IntroScene" index="4"]
-position = Vector2(167.361, 202)
-
-[node name="4" parent="IntroScene" index="5"]
-position = Vector2(361.368, 202)
-
 [editable path="World"]
+[editable path="World/Player"]
+[editable path="World/Player/HitboxPivot/SwordHitbox"]
 [editable path="IntroScene"]
