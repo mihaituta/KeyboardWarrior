@@ -776,6 +776,7 @@ debug_color = Color(0, 0.6, 0.701961, 0.121569)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -5.5
+bus = &"SFX"
 
 [node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

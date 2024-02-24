@@ -1,0 +1,100 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1ua6a86gug7s"]
+
+[ext_resource type="Script" path="res://UI/menu.gd" id="1_7ukux"]
+[ext_resource type="FontFile" uid="uid://dxdscp4kqbwb3" path="res://UI/Font/DungeonFont.ttf" id="2_8hwwp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o7tco"]
+bg_color = Color(0.576471, 0.576471, 0.780392, 0)
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yfi4u"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxato"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mleix"]
+draw_center = false
+
+[sub_resource type="Theme" id="Theme_6fe11"]
+Button/colors/font_focus_color = Color(0.466667, 0.588235, 1, 1)
+Button/colors/font_hover_color = Color(0.466667, 0.588235, 1, 1)
+Button/colors/font_outline_color = Color(0.243137, 0.333333, 1, 0)
+Button/colors/font_pressed_color = Color(0.278431, 0.611765, 1, 1)
+Button/fonts/font = ExtResource("2_8hwwp")
+Button/styles/focus = SubResource("StyleBoxFlat_o7tco")
+Button/styles/hover = SubResource("StyleBoxFlat_yfi4u")
+Button/styles/normal = SubResource("StyleBoxFlat_vxato")
+Button/styles/pressed = SubResource("StyleBoxFlat_mleix")
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_6fe11")
+script = ExtResource("1_7ukux")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.262745, 0.286275, 0.439216, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -90.0
+offset_right = 121.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_8hwwp")
+theme_override_font_sizes/font_size = 33
+text = "Keyboard Warrior"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -20.0
+offset_right = 22.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../StartButton")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

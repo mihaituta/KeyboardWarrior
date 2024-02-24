@@ -429,6 +429,7 @@ position = Vector2(11.5, -0.5)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 volume_db = -8.0
+bus = &"SFX"
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 active = false

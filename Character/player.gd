@@ -50,7 +50,12 @@ func _player_death():
 	get_parent().add_child(playerDeathEffect)
 	playerDeathEffect.global_position = global_position
 	
+
 func _physics_process(delta):
+	#if Global.isMenuOpen == false:
+		#disable_dash()
+
+		
 	match state:
 		MOVE: 
 			_move_state(delta)
@@ -58,6 +63,7 @@ func _physics_process(delta):
 			_dash_state()
 		ATTACK:
 			_attack_state(delta)
+	
 	
 func _set_move_input():
 	input_vector.x = Input.get_axis("ui_left", "ui_right");
@@ -149,6 +155,7 @@ func _on_attack_timer_timeout():
 	state = MOVE;
 
 func _on_hurtbox_area_entered(area):
+	Global.frameFreeze(0.05, 0.3)
 	Global.camera.shake(0.2,1)
 	stats.health -= area.damage 
 	hurtbox.start_invincibility(0.5)

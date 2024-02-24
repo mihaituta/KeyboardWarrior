@@ -11,7 +11,7 @@ func _open_doors() -> void:
 	for door in doors_container.get_children():
 		door.open()
 		
-func _close_doors() -> void:	
+func _close_doors() -> void:
 	for door in doors_container.get_children():
 		door.close()
 		

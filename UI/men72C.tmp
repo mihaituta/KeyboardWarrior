@@ -1,0 +1,214 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1ua6a86gug7s"]
+
+[ext_resource type="Script" path="res://UI/menu.gd" id="1_7ukux"]
+[ext_resource type="Theme" uid="uid://cdx2wowjq6c31" path="res://UI/menuTheme.tres" id="1_cjn14"]
+[ext_resource type="FontFile" uid="uid://dxdscp4kqbwb3" path="res://UI/Font/DungeonFont.ttf" id="2_8hwwp"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_cjn14")
+script = ExtResource("1_7ukux")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.262745, 0.286275, 0.439216, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -90.0
+offset_right = 121.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_8hwwp")
+theme_override_font_sizes/font_size = 33
+text = "Keyboard Warrior"
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -22.0
+offset_top = -20.0
+offset_right = 22.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="Menu"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../QuitButton")
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="Menu"]
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="Menu"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../StartButton")
+text = "Quit"
+
+[node name="Options" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.262745, 0.286275, 0.439216, 1)
+
+[node name="Label" type="Label" parent="Options/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -112.0
+offset_right = 121.0
+offset_bottom = -78.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_8hwwp")
+theme_override_font_sizes/font_size = 33
+text = "Keyboard Warrior"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.0
+offset_top = -54.5
+offset_right = 92.0
+offset_bottom = 80.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Video" type="HBoxContainer" parent="Options/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_direction = 1
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="Labels" type="VBoxContainer" parent="Options/VBoxContainer/Video"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="FullScreen" type="Label" parent="Options/VBoxContainer/Video/Labels"]
+layout_mode = 2
+theme = ExtResource("1_cjn14")
+text = "Fullscreen
+"
+
+[node name="Borderless" type="Label" parent="Options/VBoxContainer/Video/Labels"]
+layout_mode = 2
+text = "Borderless"
+
+[node name="VSync" type="Label" parent="Options/VBoxContainer/Video/Labels"]
+layout_mode = 2
+text = "Vsync
+"
+
+[node name="Checks" type="VBoxContainer" parent="Options/VBoxContainer/Video"]
+custom_minimum_size = Vector2(2, 2)
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="FullScreen" type="CheckBox" parent="Options/VBoxContainer/Video/Checks"]
+layout_mode = 2
+
+[node name="Borderless" type="CheckBox" parent="Options/VBoxContainer/Video/Checks"]
+layout_mode = 2
+
+[node name="VSync" type="CheckBox" parent="Options/VBoxContainer/Video/Checks"]
+layout_mode = 2
+
+[node name="Audio" type="HBoxContainer" parent="Options/VBoxContainer"]
+layout_mode = 2
+
+[node name="Labels" type="VBoxContainer" parent="Options/VBoxContainer/Audio"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Master" type="Label" parent="Options/VBoxContainer/Audio/Labels"]
+layout_mode = 2
+theme = ExtResource("1_cjn14")
+text = "Master
+"
+
+[node name="Music" type="Label" parent="Options/VBoxContainer/Audio/Labels"]
+layout_mode = 2
+text = "Music
+"
+
+[node name="Sound Effects" type="Label" parent="Options/VBoxContainer/Audio/Labels"]
+layout_mode = 2
+text = "Sound Effects"
+
+[node name="Sliders" type="VBoxContainer" parent="Options/VBoxContainer/Audio"]
+custom_minimum_size = Vector2(2, 2)
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Master" type="HSlider" parent="Options/VBoxContainer/Audio/Sliders"]
+layout_mode = 2
+value = 20.0
+
+[node name="Music" type="HSlider" parent="Options/VBoxContainer/Audio/Sliders"]
+layout_mode = 2
+
+[node name="Sound Effects" type="HSlider" parent="Options/VBoxContainer/Audio/Sliders"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="Options/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="Menu/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Menu/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Menu/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="toggled" from="Options/VBoxContainer/Video/Checks/FullScreen" to="." method="_on_full_screen_toggled"]
+[connection signal="toggled" from="Options/VBoxContainer/Video/Checks/Borderless" to="." method="_on_borderless_toggled"]
+[connection signal="toggled" from="Options/VBoxContainer/Video/Checks/VSync" to="." method="_on_v_sync_toggled"]
+[connection signal="pressed" from="Options/VBoxContainer/Back" to="." method="_on_back_pressed"]

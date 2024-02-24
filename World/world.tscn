@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://bbewl33hgoqsf"]
 
 [ext_resource type="PackedScene" uid="uid://dl78i7xpkv2y0" path="res://World/Rooms/Room1.tscn" id="1_60anm"]
+[ext_resource type="PackedScene" uid="uid://d1ua6a86gug7s" path="res://UI/menu.tscn" id="1_jpcpi"]
 [ext_resource type="PackedScene" uid="uid://bwbhrjwu8yolb" path="res://Character/player.tscn" id="2_6oqpl"]
-[ext_resource type="AudioStream" uid="uid://pd1jdccnifkn" path="res://Audio/Music/27 14 BOSS fixing LOOP.mp3" id="2_y2d1q"]
 [ext_resource type="Script" path="res://World/Camera.gd" id="4_h7wmm"]
 [ext_resource type="PackedScene" uid="uid://clksxmyorn5ct" path="res://World/Rooms/Room3.tscn" id="5_7tiyi"]
 [ext_resource type="PackedScene" uid="uid://fwqwpj724k8l" path="res://World/Rooms/Room2.tscn" id="6_ltpdv"]
@@ -14,14 +14,14 @@
 y_sort_enabled = true
 texture_filter = 1
 
+[node name="MenuCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Menu" parent="MenuCanvasLayer" instance=ExtResource("1_jpcpi")]
+visible = false
+
 [node name="Player" parent="." instance=ExtResource("2_6oqpl")]
 position = Vector2(408, 136)
 metadata/_edit_group_ = true
-
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="Player"]
-stream = ExtResource("2_y2d1q")
-volume_db = -20.0
-autoplay = true
 
 [node name="Room1" parent="." instance=ExtResource("1_60anm")]
 
@@ -50,6 +50,7 @@ energy = 0.3
 blend_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource("7_51obn")]
 anchors_preset = 0

@@ -118,6 +118,7 @@ func accelerate_towards_point(point, delta):
 	#animationState.travel("Run")
 	
 func _on_hurtbox_area_entered(area):
+	#Global.frameFreeze(0.05, 0.2)
 	Global.camera.shake(0.1,1)
 	stats.health -= area.damage
 	var direction = (global_position - area.owner.global_position).normalized()

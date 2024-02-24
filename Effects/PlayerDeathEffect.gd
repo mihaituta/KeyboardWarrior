@@ -6,7 +6,6 @@ func _ready():
 	play("Animate")
 	timer.start(3);
 
-
 func _on_timer_timeout():
 	get_tree().reload_current_scene()
 	PlayerStats.health_restart()

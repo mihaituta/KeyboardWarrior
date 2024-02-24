@@ -6,11 +6,11 @@ var canSkip = false;
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if canSkip and Input.is_action_just_pressed("ui_accept"):
-			get_tree().change_scene_to_file("res://World/world.tscn")
+	#if canSkip and Input.is_action_just_pressed("ui_accept"):
+	if Input.is_action_just_pressed("ui_accept"):
+		get_tree().change_scene_to_file("res://World/world.tscn")
 
 func _can_skip():
 	canSkip = true;
